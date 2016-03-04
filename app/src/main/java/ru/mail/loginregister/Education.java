@@ -22,4 +22,5 @@ public class Education {
 
     public void setMezuniyet_yili(int mezuniyet_yili){this.mezuniyet_yili=mezuniyet_yili;}
     public int getMezuniyet_yili(){return mezuniyet_yili;}
+
 }
