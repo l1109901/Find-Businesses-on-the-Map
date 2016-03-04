@@ -115,6 +115,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
                         result1.setText(okulAdi.getText());
                         result2.setText(bolum.getText());
                         result3.setText(mezuniyetYili.getText());
+
+                        String okuladi=result1.getText().toString();
+                        String bolum=result2.getText().toString();
+
+                        int mezuniyetyili=Integer.parseInt(result3.getText().toString());
+
+
                     }
                 })
                 .setNegativeButton("Iptal",
