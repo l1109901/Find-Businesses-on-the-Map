@@ -1419,9 +1419,10 @@ containing a value of this type.
         public static final int abc_simple_dropdown_hint=0x7f040016;
         public static final int activity_login=0x7f040017;
         public static final int activity_main=0x7f040018;
-        public static final int activity_register=0x7f040019;
-        public static final int egitim_bilgisi_ekle=0x7f04001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f04001b;
+        public static final int activity_main_for_company=0x7f040019;
+        public static final int activity_register=0x7f04001a;
+        public static final int egitim_bilgisi_ekle=0x7f04001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f04001c;
     }
     public static final class menu {
         public static final int menu_main=0x7f0d0000;
@@ -1449,10 +1450,11 @@ containing a value of this type.
         public static final int action_settings=0x7f060010;
         public static final int app_name=0x7f060011;
         public static final int title_activity_login=0x7f060012;
-        public static final int title_activity_maps=0x7f060013;
-        public static final int title_activity_register=0x7f060014;
-        public static final int title_activity_register_isveren=0x7f060015;
-        public static final int title_activity_selection=0x7f060016;
+        public static final int title_activity_main_for_company=0x7f060013;
+        public static final int title_activity_maps=0x7f060014;
+        public static final int title_activity_register=0x7f060015;
+        public static final int title_activity_register_isveren=0x7f060016;
+        public static final int title_activity_selection=0x7f060017;
     }
     public static final class style {
         /**  Customize your theme here. 

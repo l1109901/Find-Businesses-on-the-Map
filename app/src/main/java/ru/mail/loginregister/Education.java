@@ -1,8 +1,5 @@
 package ru.mail.loginregister;
 
-/**
- * Created by gafur on 3/4/2016.
- */
 public class Education {
 
     private String okul_adi,bolum;

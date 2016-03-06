@@ -3,9 +3,6 @@ package ru.mail.loginregister;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by gafur on 06.02.2016.
- */
 public class UserLocalStore {//store user data on the phone
     public static final String SP_NAME="userDetails";
     SharedPreferences userLocalDatabase;//data on the phone
@@ -18,7 +15,7 @@ public class UserLocalStore {//store user data on the phone
         SharedPreferences.Editor spEditor=userLocalDatabase.edit();
         spEditor.putString("ad",user.getAd());
         spEditor.putString("soyad",user.getSoyad());
-        spEditor.putInt("tc_no", user.getTc_no());
+        spEditor.putLong("tc_no", user.getTc_no());
         spEditor.putString("email", user.getEmail());
         spEditor.putString("tel", user.getTel());
         spEditor.putInt("kim", user.getId());
@@ -30,7 +27,7 @@ public class UserLocalStore {//store user data on the phone
     public User getLoggedInUser(){
         String ad=userLocalDatabase.getString("ad", "");
         String soyad=userLocalDatabase.getString("soyad", "");
-        int tc_no = userLocalDatabase.getInt("tc_no", -1);
+        long tc_no = userLocalDatabase.getLong("tc_no", -1);
         String email = userLocalDatabase.getString("email", "");
         String tel=userLocalDatabase.getString("tel", "");
         int id=userLocalDatabase.getInt("id", -1);

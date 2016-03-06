@@ -56,6 +56,7 @@ public class MainForCompany extends ActionBarActivity implements View.OnClickLis
         tvEmail.setText(user.getEmail());
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){

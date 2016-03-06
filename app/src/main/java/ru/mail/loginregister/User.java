@@ -1,14 +1,11 @@
 package ru.mail.loginregister;
 
-/**
- * Created by gafur on 06.02.2016. Şubat
- * Dont worry !
- */
 public class User {
     private String ad, soyad, email,kullaniciAdi,parola1,tel;
-    private int tc_no,id;
+    private int id;
+    private long tc_no;
     
-    public User(String ad,String soyad,int tc_no,String email, String tel,int id, String kullanici_adi, String parola1){
+    public User(String ad,String soyad,long tc_no,String email, String tel,int id, String kullanici_adi, String parola1){
         this.ad=ad;
         this.soyad=soyad;
         this.tc_no=tc_no;
@@ -23,11 +20,9 @@ public class User {
         this.parola1=password;
     }
 
-
     public String getAd() {
         return ad;
     }
-
     public void setAd(String ad) {
         this.ad = ad;
     }
@@ -35,15 +30,11 @@ public class User {
     public String getSoyad() {
         return soyad;
     }
-
     public void setSoyad(String soyad) {
         this.ad = soyad;
     }
 
-    public int getTc_no() {
-        return tc_no;
-    }
-
+    public long getTc_no() {return tc_no;}
     public void setTc_no(int tc_no) {
         this.tc_no = tc_no;
     }
@@ -51,7 +42,6 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -59,7 +49,6 @@ public class User {
     public String getTel() {
         return tel;
     }
-
     public void setName(String tel) {
         this.tel = tel;
     }
@@ -67,7 +56,6 @@ public class User {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -75,7 +63,6 @@ public class User {
     public String getKullaniciAdi() {
         return kullaniciAdi;
     }
-
     public void setKullaniciAdi(String kullaniciAdi) {
         this.kullaniciAdi = kullaniciAdi;
     }
@@ -83,7 +70,6 @@ public class User {
     public String getParola1() {
         return parola1;
     }
-
     public void setParola1(String parola1) {
         this.parola1 = parola1;
     }

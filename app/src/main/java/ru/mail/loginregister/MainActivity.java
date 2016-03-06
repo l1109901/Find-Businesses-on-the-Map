@@ -28,34 +28,34 @@ import org.apache.http.params.HttpParams;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MainActivity extends ActionBarActivity implements OnClickListener{
 
+    //variables from egitim_bilgisi_ekle
     private Button bEkle;
     private TextView result1,result2,result3;
 
     Button bLogout;
     TextView tvAd,tvSoyad,tvEmail;
     UserLocalStore userLocalStore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userLocalStore=new UserLocalStore(this);
 
+        //components from MainActivity.xml
         tvAd=(TextView)findViewById(R.id.tvAd);
         tvSoyad=(TextView)findViewById(R.id.tvSoyad);
         tvEmail=(TextView)findViewById(R.id.tvEmail);
-
         bLogout=(Button)findViewById(R.id.bLogout);
         bLogout.setOnClickListener(this);
-        userLocalStore=new UserLocalStore(this);
 
-        // components from main.xml
-        bEkle = (Button) findViewById(R.id.bEgitimEkle);
+        // components from egitim_bilgisi_ekle.xml
         result1 = (TextView) findViewById(R.id.result1);
         result2 = (TextView) findViewById(R.id.result2);
         result3 = (TextView) findViewById(R.id.result3);
-
+        bEkle = (Button) findViewById(R.id.bEgitimEkle);
         bEkle.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -82,7 +82,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
     private void displayUserDetails(){
         User user=userLocalStore.getLoggedInUser();
         tvAd.setText(user.getAd());
-        //etYil.setText(String.valueOf(user.getYil()));
         tvSoyad.setText(user.getSoyad());
         tvEmail.setText(user.getEmail());
     }
@@ -93,10 +92,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
             case R.id.bLogout:
                 userLocalStore.clearUserData();
                 userLocalStore.setUserLoggedIn(false);
-
-
                 startActivity(new Intent(this, Login.class));
-
                 break;
         }
     }
@@ -110,9 +106,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         startActivity(intent);
     }
 
-    protected void showInputDialog() {
-
-        // get prompts.xml view
+   protected void showInputDialog() {
         LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
         View promptView = layoutInflater.inflate(R.layout.egitim_bilgisi_ekle, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -133,11 +127,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
                         int mezuniyetyili=Integer.parseInt(mezuniyetYili.getText().toString());
 
                         User user=userLocalStore.getLoggedInUser();
-                        int tcno=user.getTc_no();
+                        long tcno=user.getTc_no();
 
                         Education education=new Education(okuladi,bol,mezuniyetyili);
                         education_kayit(education,tcno);
-
                     }
                 })
                 .setNegativeButton("Iptal",
@@ -152,10 +145,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         alert.show();
     }
 
-    private void education_kayit(Education education,int tcno){
-
+    private void education_kayit(Education education,long tcno){
         ServerRequests serverRequests=new ServerRequests(this);
         serverRequests.storeEducationDataInBackground(education,tcno);
-
     }
 }

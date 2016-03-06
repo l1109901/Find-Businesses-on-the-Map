@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:2:1-30:12
+ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:2:1-33:12
 	package
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:3:5-36
 		INJECTED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml
@@ -18,7 +18,7 @@ ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:5:5-67
 	android:name
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:7:5-28:19
+ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:7:5-31:19
 MERGED from [com.android.support:appcompat-v7:21.0.3] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\AndroidManifest.xml:16:5-19
 MERGED from [com.android.support:support-v4:21.0.3] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
 	android:label
@@ -59,6 +59,12 @@ ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:25:9-27:
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:27:13-60
 	android:name
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:26:13-37
+activity#ru.mail.loginregister.MainForCompany
+ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:28:9-30:80
+	android:label
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:30:13-68
+	android:name
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:29:13-43
 uses-sdk
 INJECTED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:21.0.3] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\AndroidManifest.xml:15:5-42

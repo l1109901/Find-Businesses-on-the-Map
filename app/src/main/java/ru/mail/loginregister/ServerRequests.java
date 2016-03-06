@@ -20,9 +20,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by gafur on 06.02.2016.
- */
 public class ServerRequests {
     ProgressDialog progressDialog;
     public static final int CONNECTION_TIMEOUT=1000*15;
@@ -45,7 +42,7 @@ public class ServerRequests {
         new FetchUserDataAsyncTask(user,callback).execute();
     }
 
-    public void storeEducationDataInBackground(Education education,int tcno){
+    public void storeEducationDataInBackground(Education education,long tcno){
         progressDialog.show();
         new StoreEducationDataAsyncTask(education,tcno).execute();
     }
@@ -163,10 +160,10 @@ public class ServerRequests {
 
     public class StoreEducationDataAsyncTask extends AsyncTask<Void,Void,Void> {
 
-        int tcno;
+        long tcno;
         Education education;
 
-        public StoreEducationDataAsyncTask(Education education,int tcno){
+        public StoreEducationDataAsyncTask(Education education,long tcno){
             this.education=education;
             this.tcno=tcno;
         }

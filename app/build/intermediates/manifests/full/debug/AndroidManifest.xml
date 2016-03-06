@@ -31,6 +31,9 @@
         <activity
             android:name="ru.mail.loginregister.Register"
             android:label="@string/title_activity_register" />
+        <activity
+            android:name="ru.mail.loginregister.MainForCompany"
+            android:label="@string/title_activity_main_for_company" />
     </application>
 
 </manifest>

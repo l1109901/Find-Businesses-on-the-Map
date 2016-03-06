@@ -16,7 +16,6 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
     Button bRegister;
     EditText etAd, etSoyad, etTC_NO, etEmail,etTel,etKullanici_adi,etParola1,etParola2;
     CheckBox ch1,ch2;
-    //int id1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +30,16 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
         etKullanici_adi = (EditText) findViewById(R.id.etKullanici_adi);
         etParola1 = (EditText) findViewById(R.id.etParola1);
         etParola2 = (EditText) findViewById(R.id.etParola2);
+
         ch1 = (CheckBox) findViewById(R.id.ch1);
         ch2 = (CheckBox) findViewById(R.id.ch2);
+
         bRegister = (Button) findViewById(R.id.bRegister);
         bRegister.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.bRegister:
                 String ad = etAd.getText().toString().trim();
@@ -52,27 +52,23 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                 String parola2 = etParola2.getText().toString().trim();
 
                 int id2 = 0;
-
+                int count=0;
                 if(ch1.isChecked()){
-                    id2=1;
+                    id2=1;count++;
                 }else if(ch2.isChecked()){
-                    id2=2;
-                }else{
-                    Toast.makeText(this, "Seçiminizi yapınız !", Toast.LENGTH_LONG).show();
+                    id2=2;count++;
                 }
-                if ( stc_no.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
+                if ( count==0 || stc_no.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
                     Toast.makeText(this, "Tüm alanları doldurmanız gereklidir !", Toast.LENGTH_LONG).show();
-                }else {
-
-                    if (parola1.equals(parola2)) {
-                        int tc_no = Integer.parseInt(etTC_NO.getText().toString());
+                }else if (parola1.equals(parola2)) {
+                        long tc_no = Long.parseLong(stc_no);
 
                         User user = new User(ad, soyad, tc_no, email,stel,id2,kullanici_adi,parola1);
                         registerUser(user);
-                    } else {
+                    }else {
                         final AlertDialog alertDialog = new AlertDialog.Builder(Register.this).create();
-                        alertDialog.setMessage("Lütfen tekrar giriniz !");
-                        alertDialog.setTitle("Hata!!!");
+                        alertDialog.setMessage("Şifreler uyuşmuyor.Yeniden giriniz !");
+                        alertDialog.setTitle("Uyari!!!");
                         alertDialog.setButton("Ok",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
@@ -81,7 +77,6 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                                     }
                                 });
                         alertDialog.show();
-                    }
                 }
                 break;
         }
@@ -96,6 +91,4 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
             }
         });
     }
-
-
 }
