@@ -1333,7 +1333,7 @@ containing a value of this type.
         public static final int dropdown=0x7f0c001d;
         public static final int edit_query=0x7f0c0034;
         public static final int end=0x7f0c0015;
-        public static final int etAd=0x7f0c004b;
+        public static final int etAd=0x7f0c004c;
         public static final int etBolum=0x7f0c0055;
         public static final int etEmail=0x7f0c004e;
         public static final int etKullanici_adi=0x7f0c0040;
@@ -1341,9 +1341,9 @@ containing a value of this type.
         public static final int etOkul=0x7f0c0054;
         public static final int etParola1=0x7f0c0041;
         public static final int etParola2=0x7f0c0050;
-        public static final int etSoyad=0x7f0c004c;
+        public static final int etSoyad=0x7f0c004d;
+        public static final int etTC_NO=0x7f0c004b;
         public static final int etTel=0x7f0c004f;
-        public static final int etYil=0x7f0c004d;
         public static final int expand_activities_button=0x7f0c0023;
         public static final int expanded_menu=0x7f0c0029;
         public static final int home=0x7f0c0005;

@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class Register extends ActionBarActivity implements View.OnClickListener {
 
     Button bRegister;
-    EditText etAd, etSoyad, etYil, etEmail,etTel,etKullanici_adi,etParola1,etParola2;
+    EditText etAd, etSoyad, etTC_NO, etEmail,etTel,etKullanici_adi,etParola1,etParola2;
     CheckBox ch1,ch2;
     //int id1;
 
@@ -25,7 +25,7 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
 
         etAd = (EditText) findViewById(R.id.etAd);
         etSoyad = (EditText) findViewById(R.id.etSoyad);
-        etYil = (EditText) findViewById(R.id.etYil);
+        etTC_NO = (EditText) findViewById(R.id.etTC_NO);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etTel = (EditText) findViewById(R.id.etTel);
         etKullanici_adi = (EditText) findViewById(R.id.etKullanici_adi);
@@ -44,7 +44,7 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
             case R.id.bRegister:
                 String ad = etAd.getText().toString().trim();
                 String soyad = etSoyad.getText().toString().trim();
-                String syil = etYil.getText().toString();
+                String stc_no = etTC_NO.getText().toString();
                 String stel = etTel.getText().toString();
                 String email = etEmail.getText().toString().trim();
                 String kullanici_adi = etKullanici_adi.getText().toString().trim();
@@ -60,14 +60,14 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                 }else{
                     Toast.makeText(this, "Seçiminizi yapınız !", Toast.LENGTH_LONG).show();
                 }
-                if ( syil.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
+                if ( stc_no.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
                     Toast.makeText(this, "Tüm alanları doldurmanız gereklidir !", Toast.LENGTH_LONG).show();
                 }else {
 
                     if (parola1.equals(parola2)) {
-                        int yil = Integer.parseInt(etYil.getText().toString());
+                        int tc_no = Integer.parseInt(etTC_NO.getText().toString());
 
-                        User user = new User(ad, soyad, yil, email,stel,id2,kullanici_adi,parola1);
+                        User user = new User(ad, soyad, tc_no, email,stel,id2,kullanici_adi,parola1);
                         registerUser(user);
                     } else {
                         final AlertDialog alertDialog = new AlertDialog.Builder(Register.this).create();

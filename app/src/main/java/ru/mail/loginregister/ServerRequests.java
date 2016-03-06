@@ -45,6 +45,11 @@ public class ServerRequests {
         new FetchUserDataAsyncTask(user,callback).execute();
     }
 
+    public void storeEducationDataInBackground(Education education,int tcno){
+        progressDialog.show();
+        new StoreEducationDataAsyncTask(education,tcno).execute();
+    }
+
     public class StoreUserDataAsyncTask extends AsyncTask<Void,Void,Void>{
 
         User user;
@@ -60,7 +65,7 @@ public class ServerRequests {
             ArrayList<NameValuePair> dataToSend=new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("ad",user.getAd()));
             dataToSend.add(new BasicNameValuePair("soyad",user.getSoyad()));
-            dataToSend.add(new BasicNameValuePair("dogum_yil",user.getYil()+""));
+            dataToSend.add(new BasicNameValuePair("tc_no",user.getTc_no()+""));
             dataToSend.add(new BasicNameValuePair("email",user.getEmail()));
             dataToSend.add(new BasicNameValuePair("tel",user.getTel()));
             dataToSend.add(new BasicNameValuePair("kim",user.getId()+""));
@@ -134,12 +139,12 @@ public class ServerRequests {
                 }else{
                     String ad=jsonObject.getString("ad");
                     String soyad=jsonObject.getString("soyad");
-                    int yil=jsonObject.getInt("dogum_yil");
+                    int tc_no=jsonObject.getInt("tc_no");
                     String email=jsonObject.getString("email");
                     String tel=jsonObject.getString("tel");
                     int id=jsonObject.getInt("kim");
 
-                    returnedUser=new User(ad,soyad,yil,email,tel,id,user.getKullaniciAdi(),user.getParola1());
+                    returnedUser=new User(ad,soyad,tc_no,email,tel,id,user.getKullaniciAdi(),user.getParola1());
                 }
             }catch(Exception e){
                 e.printStackTrace();
@@ -153,6 +158,47 @@ public class ServerRequests {
             progressDialog.dismiss();
             userCallback.done(returnedUser);
             super.onPostExecute(returnedUser);
+        }
+    }
+
+    public class StoreEducationDataAsyncTask extends AsyncTask<Void,Void,Void> {
+
+        int tcno;
+        Education education;
+
+        public StoreEducationDataAsyncTask(Education education,int tcno){
+            this.education=education;
+            this.tcno=tcno;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("okul_adi",education.getOkul_adi()));
+            dataToSend.add(new BasicNameValuePair("bolum", education.getBolum()));
+            dataToSend.add(new BasicNameValuePair("mezuniyet_yili", (education.getMezuniyet_yili() + "")));
+            dataToSend.add(new BasicNameValuePair("tc_no", ( tcno+"")));
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"Education.php");
+
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                client.execute(post);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            super.onPostExecute(aVoid);
         }
     }
 }

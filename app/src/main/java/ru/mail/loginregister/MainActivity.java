@@ -14,6 +14,20 @@ import android.view.LayoutInflater;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends ActionBarActivity implements OnClickListener{
 
@@ -112,15 +126,17 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("Ekle", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        result1.setText(okulAdi.getText());
-                        result2.setText(bolum.getText());
-                        result3.setText(mezuniyetYili.getText());
 
-                        String okuladi=result1.getText().toString();
-                        String bolum=result2.getText().toString();
+                        String okuladi=okulAdi.getText().toString();
+                        String bol=bolum.getText().toString();
 
-                        int mezuniyetyili=Integer.parseInt(result3.getText().toString());
+                        int mezuniyetyili=Integer.parseInt(mezuniyetYili.getText().toString());
 
+                        User user=userLocalStore.getLoggedInUser();
+                        int tcno=user.getTc_no();
+
+                        Education education=new Education(okuladi,bol,mezuniyetyili);
+                        education_kayit(education,tcno);
 
                     }
                 })
@@ -134,5 +150,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         // create an alert dialog
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+    }
+
+    private void education_kayit(Education education,int tcno){
+
+        ServerRequests serverRequests=new ServerRequests(this);
+        serverRequests.storeEducationDataInBackground(education,tcno);
+
     }
 }

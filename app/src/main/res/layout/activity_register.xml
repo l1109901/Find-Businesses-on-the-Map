@@ -8,6 +8,13 @@
     android:weightSum="1">
 
     <EditText
+        android:id="@+id/etTC_NO"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:hint="TC Kimlik Numara" />
+
+    <EditText
         android:id="@+id/etAd"
         android:layout_width="match_parent"
         android:layout_marginBottom="10dp"
@@ -21,13 +28,6 @@
         android:layout_height="wrap_content"
         android:hint="Soyad"
         android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:id="@+id/etYil"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        android:hint="Doğum Yılı" />
 
     <EditText
         android:id="@+id/etEmail"

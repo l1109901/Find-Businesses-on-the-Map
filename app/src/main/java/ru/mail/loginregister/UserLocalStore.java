@@ -18,7 +18,7 @@ public class UserLocalStore {//store user data on the phone
         SharedPreferences.Editor spEditor=userLocalDatabase.edit();
         spEditor.putString("ad",user.getAd());
         spEditor.putString("soyad",user.getSoyad());
-        spEditor.putInt("dogum_yil", user.getYil());
+        spEditor.putInt("tc_no", user.getTc_no());
         spEditor.putString("email", user.getEmail());
         spEditor.putString("tel", user.getTel());
         spEditor.putInt("kim", user.getId());
@@ -30,17 +30,14 @@ public class UserLocalStore {//store user data on the phone
     public User getLoggedInUser(){
         String ad=userLocalDatabase.getString("ad", "");
         String soyad=userLocalDatabase.getString("soyad", "");
-        int yil = userLocalDatabase.getInt("dogum_yil", -1);
+        int tc_no = userLocalDatabase.getInt("tc_no", -1);
         String email = userLocalDatabase.getString("email", "");
         String tel=userLocalDatabase.getString("tel", "");
         int id=userLocalDatabase.getInt("id", -1);
         String username=userLocalDatabase.getString("kullanici_adi", "");
         String password=userLocalDatabase.getString("sifre","");
 
-        //User storedUser=new User(ad,soyad,yil,email,tel,id,username,password);
-
-        //return storedUser;
-        return new User(ad,soyad,yil,email,tel,id,username,password);
+        return new User(ad,soyad,tc_no,email,tel,id,username,password);
     }
 
     public void setUserLoggedIn(boolean loggedIn){

@@ -365,7 +365,7 @@ int id disableHome 0x7f0c000d
 int id dropdown 0x7f0c001d
 int id edit_query 0x7f0c0034
 int id end 0x7f0c0015
-int id etAd 0x7f0c004b
+int id etAd 0x7f0c004c
 int id etBolum 0x7f0c0055
 int id etEmail 0x7f0c004e
 int id etKullanici_adi 0x7f0c0040
@@ -373,9 +373,9 @@ int id etMezunyet 0x7f0c0056
 int id etOkul 0x7f0c0054
 int id etParola1 0x7f0c0041
 int id etParola2 0x7f0c0050
-int id etSoyad 0x7f0c004c
+int id etSoyad 0x7f0c004d
+int id etTC_NO 0x7f0c004b
 int id etTel 0x7f0c004f
-int id etYil 0x7f0c004d
 int id expand_activities_button 0x7f0c0023
 int id expanded_menu 0x7f0c0029
 int id home 0x7f0c0005

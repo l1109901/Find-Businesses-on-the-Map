@@ -6,12 +6,12 @@ package ru.mail.loginregister;
  */
 public class User {
     private String ad, soyad, email,kullaniciAdi,parola1,tel;
-    private int yil,id;
+    private int tc_no,id;
     
-    public User(String ad,String soyad,int yil,String email, String tel,int id, String kullanici_adi, String parola1){
+    public User(String ad,String soyad,int tc_no,String email, String tel,int id, String kullanici_adi, String parola1){
         this.ad=ad;
         this.soyad=soyad;
-        this.yil=yil;
+        this.tc_no=tc_no;
         this.email=email;
         this.tel=tel;
         this.id=id;
@@ -22,6 +22,7 @@ public class User {
         this.kullaniciAdi=username;
         this.parola1=password;
     }
+
 
     public String getAd() {
         return ad;
@@ -39,12 +40,12 @@ public class User {
         this.ad = soyad;
     }
 
-    public int getYil() {
-        return yil;
+    public int getTc_no() {
+        return tc_no;
     }
 
-    public void setYil(int yil) {
-        this.yil = yil;
+    public void setTc_no(int tc_no) {
+        this.tc_no = tc_no;
     }
 
     public String getEmail() {
