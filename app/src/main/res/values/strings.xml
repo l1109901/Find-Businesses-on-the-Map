@@ -7,4 +7,5 @@
     <string name="title_activity_register_isveren">Register_isveren</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_main_for_company">MainForCompany</string>
+    <string name="title_activity_main_map">MainMap</string>
 </resources>

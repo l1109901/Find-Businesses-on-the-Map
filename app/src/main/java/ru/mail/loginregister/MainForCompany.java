@@ -66,7 +66,7 @@ public class MainForCompany extends ActionBarActivity implements View.OnClickLis
                 startActivity(new Intent(this, Login.class));
                 break;
             case R.id.bKonum:
-                //startActivity(new Intent(this,KonumBilgisi.class));
+                startActivity(new Intent(this,MapsActivity.class));
         }
     }
 
