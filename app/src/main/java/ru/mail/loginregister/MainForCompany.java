@@ -31,7 +31,7 @@ public class MainForCompany extends ActionBarActivity implements View.OnClickLis
 
         bKonum=(Button)findViewById(R.id.bKonum);
         bKonum.setOnClickListener(this);
-        bLogout=(Button)findViewById(R.id.bLogout);
+        bLogout=(Button)findViewById(R.id.bLogout2);
         bLogout.setOnClickListener(this);
     }
 
@@ -60,7 +60,7 @@ public class MainForCompany extends ActionBarActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.bLogout:
+            case R.id.bLogout2:
                 userLocalStore.clearUserData();
                 userLocalStore.setUserLoggedIn(false);
                 startActivity(new Intent(this, Login.class));
