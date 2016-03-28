@@ -87,7 +87,6 @@ public class ServerRequests {
             }catch(Exception e){
                 e.printStackTrace();
             }
-
             return null;
         }
 
@@ -151,7 +150,6 @@ public class ServerRequests {
             }catch(Exception e){
                 e.printStackTrace();
             }
-
             return returnedUser;
         }
 

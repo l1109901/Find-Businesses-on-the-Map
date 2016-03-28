@@ -82,7 +82,6 @@ public class Login extends ActionBarActivity implements View.OnClickListener{
             userLocalStore.setUserLoggedIn(true);
             startActivity(new Intent(this,MainForCompany.class));
         }
-
     }
 
     @Override
