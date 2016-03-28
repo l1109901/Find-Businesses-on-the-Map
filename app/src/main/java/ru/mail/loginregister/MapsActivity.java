@@ -220,7 +220,7 @@ public class MapsActivity extends FragmentActivity implements
                 .setPositiveButton("Ekle", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String okuladi=firmaAdi.getText().toString();
+                        String firmaadi=firmaAdi.getText().toString();
                         User user=userLocalStore.getLoggedInUser();
                     }
                 })
