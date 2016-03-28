@@ -47,6 +47,11 @@ public class ServerRequests {
         new StoreEducationDataAsyncTask(education,tcno).execute();
     }
 
+    public void storeFirmaDataInBackground(Firma firma){
+        progressDialog.show();
+        new StoreFirmaDataAsyncTask(firma).execute();
+    }
+
     public class StoreUserDataAsyncTask extends AsyncTask<Void,Void,Void>{
 
         User user;
@@ -174,7 +179,7 @@ public class ServerRequests {
             dataToSend.add(new BasicNameValuePair("okul_adi",education.getOkul_adi()));
             dataToSend.add(new BasicNameValuePair("bolum", education.getBolum()));
             dataToSend.add(new BasicNameValuePair("mezuniyet_yili", (education.getMezuniyet_yili() + "")));
-            dataToSend.add(new BasicNameValuePair("tc_no", ( tcno+"")));
+            dataToSend.add(new BasicNameValuePair("tc_no", (tcno + "")));
 
             HttpParams httpRequestParams=new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
@@ -182,6 +187,45 @@ public class ServerRequests {
 
             HttpClient client=new DefaultHttpClient(httpRequestParams);
             HttpPost post=new HttpPost(SERVER_ADDRESS+"Education.php");
+
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                client.execute(post);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            super.onPostExecute(aVoid);
+        }
+    }
+
+    public class StoreFirmaDataAsyncTask extends AsyncTask<Void,Void,Void> {
+
+        Firma firma;
+
+        public StoreFirmaDataAsyncTask(Firma firma){
+            this.firma=firma;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("firma_adi",firma.getFirmaAdi()));
+            dataToSend.add(new BasicNameValuePair("latitude", firma.getLatitude()+""));
+            dataToSend.add(new BasicNameValuePair("longtitude", firma.getLongtitude()+""));
+            dataToSend.add(new BasicNameValuePair("tc_no", firma.getTcno()+""));
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"Firma.php");
 
             try{
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));

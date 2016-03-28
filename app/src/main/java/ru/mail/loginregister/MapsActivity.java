@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.ConnectionResult;
@@ -24,9 +22,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import org.w3c.dom.Text;
-
 
 public class MapsActivity extends FragmentActivity implements
         OnMapReadyCallback,
@@ -46,7 +41,6 @@ public class MapsActivity extends FragmentActivity implements
     private double longitude;
     private double latitude;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,16 +50,14 @@ public class MapsActivity extends FragmentActivity implements
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(MapsActivity.this);
 
+        userLocalStore=new UserLocalStore(this);
+
         //Initializing googleapi client
-        // ATTENTION: This "addApi(AppIndex.API)"was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .addApi(AppIndex.API).build();
-
-
     }
 
     @Override
@@ -200,7 +192,7 @@ public class MapsActivity extends FragmentActivity implements
         showInputDialog(latitude,longitude);
     }
 
-    protected void showInputDialog(double latitude,double longitude) {
+    protected void showInputDialog(final double latitude, final double longitude) {
         LayoutInflater layoutInflater = LayoutInflater.from(MapsActivity.this);
         View promptView = layoutInflater.inflate(R.layout.firma_bilgileri, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MapsActivity.this);
@@ -210,8 +202,8 @@ public class MapsActivity extends FragmentActivity implements
         final TextView lat=(TextView)promptView.findViewById(R.id.tvLatitude);
         final TextView lon=(TextView)promptView.findViewById(R.id.tvLongtitude);
 
-        String latstr= String.valueOf((latitude));
-        String lonstr=String.valueOf((longitude));
+        final String latstr= String.valueOf((latitude));
+        final String lonstr=String.valueOf((longitude));
         lat.setText(latstr);
         lon.setText(lonstr);
 
@@ -222,6 +214,10 @@ public class MapsActivity extends FragmentActivity implements
 
                         String firmaadi=firmaAdi.getText().toString();
                         User user=userLocalStore.getLoggedInUser();
+                        long tcno=user.getTc_no();
+
+                        Firma firma=new Firma(tcno,firmaadi,latitude,longitude);
+                        firma_kayit(firma);
                     }
                 })
                 .setNegativeButton("Iptal",
@@ -234,6 +230,11 @@ public class MapsActivity extends FragmentActivity implements
         // create an alert dialog
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+    }
+
+    private void firma_kayit(Firma firma) {
+        ServerRequests serverRequests=new ServerRequests(this);
+        serverRequests.storeFirmaDataInBackground(firma);
     }
 
     @Override
