@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+<ScrollView
+    android:id="@+id/svScroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:id="@+id/etKullanici_adi"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        android:hint="Kullanıcı Adı" />
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
-    <EditText
-        android:id="@+id/etParola1"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:inputType="textPassword"
-        android:layout_height="wrap_content"
-        android:hint="Şifre" />
+        <EditText
+            android:id="@+id/etKullanici_adi"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Kullanıcı Adı" />
 
-    <Button
-        android:id="@+id/bLogin"
-        android:text="Giriş"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etParola1"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"
+            android:hint="Şifre" />
 
-    <TextView
-        android:id="@+id/tvRegisterLink"
-        android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:text="Kayıt Ol"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bLogin"
+            android:text="Giriş"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvRegisterLink"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="Kayıt Ol"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

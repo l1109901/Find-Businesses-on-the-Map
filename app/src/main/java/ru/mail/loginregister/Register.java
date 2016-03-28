@@ -9,12 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class Register extends ActionBarActivity implements View.OnClickListener {
 
     Button bRegister;
     EditText etAd, etSoyad, etTC_NO, etEmail,etTel,etKullanici_adi,etParola1,etParola2;
+    ScrollView scrlvw;
     CheckBox ch1,ch2;
 
     @Override
@@ -22,6 +24,7 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        scrlvw=(ScrollView)findViewById(R.id.svScroll);
         etAd = (EditText) findViewById(R.id.etAd);
         etSoyad = (EditText) findViewById(R.id.etSoyad);
         etTC_NO = (EditText) findViewById(R.id.etTC_NO);
