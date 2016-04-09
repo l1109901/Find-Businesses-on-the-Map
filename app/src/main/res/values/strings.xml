@@ -9,5 +9,6 @@
     <string name="title_activity_main_for_company">MainForCompany</string>
     <string name="title_activity_main_map">MainMap</string>
     <string name="tap_instructions">tv</string>
+    <string name="title_activity_is__arama">Map</string>
 
 </resources>

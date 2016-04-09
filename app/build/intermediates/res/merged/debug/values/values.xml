@@ -291,6 +291,7 @@
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>
     <string name="tap_instructions">tv</string>
+    <string name="title_activity_is__arama">Map</string>
     <string name="title_activity_login">Giriş</string>
     <string name="title_activity_main_for_company">MainForCompany</string>
     <string name="title_activity_main_map">MainMap</string>

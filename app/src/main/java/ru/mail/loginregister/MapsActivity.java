@@ -69,6 +69,7 @@ public class MapsActivity extends FragmentActivity implements
         //mMap.addMarker(new MarkerOptions().position(turkey).draggable(true));
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(turkey));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(turkey, 4) );
 
         mMap.setOnMarkerDragListener(this);
         mMap.setOnMapLongClickListener(this);
@@ -136,7 +137,7 @@ public class MapsActivity extends FragmentActivity implements
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
         //Animating the camera
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        //mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
         //Displaying current coordinates in toast
         //Toast.makeText(this, msg, Toast.LENGTH_LONG).show();

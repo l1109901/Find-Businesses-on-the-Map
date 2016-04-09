@@ -18,14 +18,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
     private Button bEkle;
     private TextView result1,result2,result3;
 
-    Button bLogout;
+    Button bLogout,bisara;
     TextView tvAd,tvSoyad,tvEmail;
     UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_for_isci);
         userLocalStore=new UserLocalStore(this);
 
         //components from MainActivity.xml
@@ -34,6 +34,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         tvEmail=(TextView)findViewById(R.id.tvEmail);
         bLogout=(Button)findViewById(R.id.bLogout);
         bLogout.setOnClickListener(this);
+        bisara=(Button)findViewById(R.id.b_isara);
+        bisara.setOnClickListener(this);
 
         // components from egitim_bilgisi_ekle.xml
         result1 = (TextView) findViewById(R.id.result1);
@@ -78,6 +80,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
                 userLocalStore.setUserLoggedIn(false);
                 startActivity(new Intent(this, Login.class));
                 break;
+            case R.id.b_isara:
+                startActivity(new Intent(this, Is_Arama.class));
         }
     }
 
