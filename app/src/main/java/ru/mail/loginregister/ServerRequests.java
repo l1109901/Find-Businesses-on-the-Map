@@ -297,10 +297,10 @@ public class ServerRequests {
         }
 
         @Override
-        protected void onPostExecute(Firma[] firm){
+        protected void onPostExecute(Firma[] firmas){
             progressDialog.dismiss();
-            callback.done(firm);
-            super.onPostExecute(firm);
+            callback.done(firmas);
+            super.onPostExecute(firmas);
         }
     }
 }

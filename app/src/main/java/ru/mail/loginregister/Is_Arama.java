@@ -61,7 +61,7 @@ public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, Go
         serverRequests.fetchLocationDataInBackground(new GetFirmCallBack() {
             @Override
             public void done(Firma[] returnedFirma) {
-                for (int i = 0; i < returnedFirma.length; i++) {
+                for (int i=0;i<2;i++){
                     LatLng location = new LatLng(returnedFirma[i].getLatitude(), returnedFirma[i].getLongtitude());
                     mMap.addMarker(new MarkerOptions().position(location).title(returnedFirma[i].getFirmaAdi()));
                 }
