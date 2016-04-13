@@ -16,9 +16,13 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ServerRequests {
     ProgressDialog progressDialog;
@@ -52,6 +56,12 @@ public class ServerRequests {
         new StoreFirmaDataAsyncTask(firma).execute();
     }
 
+    public void fetchLocationDataInBackground(GetFirmCallBack callBack){
+        progressDialog.show();
+        new FetchLocationDataAsyncTask(callBack).execute();
+    }
+
+
     public class StoreUserDataAsyncTask extends AsyncTask<Void,Void,Void>{
 
         User user;
@@ -71,7 +81,7 @@ public class ServerRequests {
             dataToSend.add(new BasicNameValuePair("email",user.getEmail()));
             dataToSend.add(new BasicNameValuePair("tel",user.getTel()));
             dataToSend.add(new BasicNameValuePair("kim",user.getId()+""));
-            dataToSend.add(new BasicNameValuePair("kullanici_adi",user.getKullaniciAdi()));
+            dataToSend.add(new BasicNameValuePair("kullanici_adi", user.getKullaniciAdi()));
             dataToSend.add(new BasicNameValuePair("sifre", user.getParola1()));
 
             HttpParams httpRequestParams=new BasicHttpParams();
@@ -238,6 +248,59 @@ public class ServerRequests {
         protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
             super.onPostExecute(aVoid);
+        }
+    }
+
+    public class FetchLocationDataAsyncTask extends AsyncTask<Void,Void,Firma[]> {
+
+        GetFirmCallBack callback;
+
+        public FetchLocationDataAsyncTask(GetFirmCallBack callback) {
+            this.callback = callback;
+        }
+
+        @Override
+        protected Firma[] doInBackground(Void... params) {
+
+            HttpParams httpRequestParams = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client = new DefaultHttpClient(httpRequestParams);
+            HttpPost post = new HttpPost(SERVER_ADDRESS + "SelectLatLon.php");
+
+            Firma[] firmas=null;
+            try {
+                HttpResponse httpResponse = client.execute(post);
+                HttpEntity entity = httpResponse.getEntity();
+                String result;
+                result = EntityUtils.toString(entity);
+                System.out.println(result);
+                firmas=new Firma[result.length()];
+                JSONArray jsonArray = new JSONArray(result);
+
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Long tc_no=jsonObject.getLong("tc_no");
+                    String firma_adi=jsonObject.getString("firma_adi");
+                    Double lat=jsonObject.getDouble("lat");
+                    Double lon=jsonObject.getDouble("lon");
+                    firmas[i]=new Firma(tc_no,firma_adi,lat,lon);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return firmas;
+        }
+
+        @Override
+        protected void onPostExecute(Firma[] firm){
+            progressDialog.dismiss();
+            callback.done(firm);
+            super.onPostExecute(firm);
         }
     }
 }
