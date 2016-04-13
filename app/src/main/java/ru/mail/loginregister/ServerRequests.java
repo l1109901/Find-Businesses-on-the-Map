@@ -251,7 +251,7 @@ public class ServerRequests {
         }
     }
 
-    public class FetchLocationDataAsyncTask extends AsyncTask<Void,Void,Firma[]> {
+    public class FetchLocationDataAsyncTask extends AsyncTask<Void,Void,ArrayList<Firma>> {
 
         GetFirmCallBack callback;
 
@@ -260,7 +260,7 @@ public class ServerRequests {
         }
 
         @Override
-        protected Firma[] doInBackground(Void... params) {
+        protected ArrayList<Firma> doInBackground(Void... params) {
 
             HttpParams httpRequestParams = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
@@ -269,14 +269,14 @@ public class ServerRequests {
             HttpClient client = new DefaultHttpClient(httpRequestParams);
             HttpPost post = new HttpPost(SERVER_ADDRESS + "SelectLatLon.php");
 
-            Firma[] firmas=null;
+            ArrayList<Firma> firmas=null;
             try {
                 HttpResponse httpResponse = client.execute(post);
                 HttpEntity entity = httpResponse.getEntity();
                 String result;
                 result = EntityUtils.toString(entity);
                 System.out.println(result);
-                firmas=new Firma[result.length()];
+                firmas=new ArrayList<Firma>();
                 JSONArray jsonArray = new JSONArray(result);
 
                 for(int i=0;i<jsonArray.length();i++){
@@ -285,7 +285,8 @@ public class ServerRequests {
                     String firma_adi=jsonObject.getString("firma_adi");
                     Double lat=jsonObject.getDouble("lat");
                     Double lon=jsonObject.getDouble("lon");
-                    firmas[i]=new Firma(tc_no,firma_adi,lat,lon);
+                    Firma frm=new Firma(tc_no,firma_adi,lat,lon);
+                    firmas.add(frm);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -297,7 +298,7 @@ public class ServerRequests {
         }
 
         @Override
-        protected void onPostExecute(Firma[] firmas){
+        protected void onPostExecute(ArrayList<Firma> firmas){
             progressDialog.dismiss();
             callback.done(firmas);
             super.onPostExecute(firmas);

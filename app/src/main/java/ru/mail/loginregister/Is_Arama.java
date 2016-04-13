@@ -16,6 +16,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
@@ -60,10 +62,10 @@ public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, Go
         ServerRequests serverRequests=new ServerRequests(this);
         serverRequests.fetchLocationDataInBackground(new GetFirmCallBack() {
             @Override
-            public void done(Firma[] returnedFirma) {
-                for (int i=0;i<2;i++){
-                    LatLng location = new LatLng(returnedFirma[i].getLatitude(), returnedFirma[i].getLongtitude());
-                    mMap.addMarker(new MarkerOptions().position(location).title(returnedFirma[i].getFirmaAdi()));
+            public void done(ArrayList<Firma> returnedFirma) {
+                for (int i=0;i<returnedFirma.size();i++){
+                    LatLng location = new LatLng(returnedFirma.get(i).getLatitude(), returnedFirma.get(i).getLongtitude());
+                    mMap.addMarker(new MarkerOptions().position(location).title(returnedFirma.get(i).getFirmaAdi()));
                 }
             }
         });
