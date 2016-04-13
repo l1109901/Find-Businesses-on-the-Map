@@ -293,7 +293,7 @@ public class ServerRequests {
             catch (JSONException e) {
                 e.printStackTrace();
             }
-            return firmas;
+            return firmas;//<<-------------------------------------burada hata veriyor!!!!!!!
         }
 
         @Override
