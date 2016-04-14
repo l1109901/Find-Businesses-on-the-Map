@@ -1,13 +1,13 @@
 package ru.mail.loginregister;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainForCompany extends ActionBarActivity implements View.OnClickListener {
+public class MainForCompany extends Activity implements View.OnClickListener {
 
     UserLocalStore userLocalStore;
     Button bLogout;

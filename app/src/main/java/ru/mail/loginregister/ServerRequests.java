@@ -100,23 +100,11 @@ public class ServerRequests {
                 HttpResponse response=client.execute(post);
 
                 jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
-
-                //HttpEntity entity=httpResponse.getEntity();
-               // String result= EntityUtils.toString(entity);
-               // System.out.println(result);
-                //JSONObject jo=new JSONObject(result);
-                //returnedInt=jo.getInt(result);
-
             }catch(Exception e){
                 e.printStackTrace();
             }
             return jsonResult;
         }
-
-        /*@Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }*/
 
         @Override
         protected void onPostExecute(String result) {
@@ -185,7 +173,7 @@ public class ServerRequests {
                 }else{
                     String ad=jsonObject.getString("ad");
                     String soyad=jsonObject.getString("soyad");
-                    int tc_no=jsonObject.getInt("tc_no");
+                    long tc_no=jsonObject.getLong("tc_no");
                     String email=jsonObject.getString("email");
                     String tel=jsonObject.getString("tel");
                     int id=jsonObject.getInt("kim");
