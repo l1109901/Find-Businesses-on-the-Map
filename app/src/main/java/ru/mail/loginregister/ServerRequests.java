@@ -243,6 +243,7 @@ public class ServerRequests {
             this.firma=firma;
         }
 
+
         @Override
         protected Void doInBackground(Void... params) {
             ArrayList<NameValuePair> dataToSend=new ArrayList<>();
