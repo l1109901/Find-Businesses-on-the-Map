@@ -3,6 +3,7 @@ package ru.mail.loginregister;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,9 +21,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ServerRequests {
     ProgressDialog progressDialog;
@@ -36,9 +39,9 @@ public class ServerRequests {
         progressDialog.setMessage("Bekleyiniz...");
     }
 
-    public void storeUserDataInBackground(User user,GetUserCallback userCallback){
+    public void storeUserDataInBackground(User user,GetConnectionCallBack connectionCallBack){
         progressDialog.show();
-        new StoreUserDataAsyncTask(user,userCallback).execute();
+        new StoreUserDataAsyncTask(user,connectionCallBack).execute();
     }
 
     public void fetchUserDataInBackground(User user,GetUserCallback callback){
@@ -62,18 +65,18 @@ public class ServerRequests {
     }
 
 
-    public class StoreUserDataAsyncTask extends AsyncTask<Void,Void,Void>{
+    public class StoreUserDataAsyncTask extends AsyncTask<String,Void,String>{
 
         User user;
-        GetUserCallback userCallback;
+        GetConnectionCallBack connectionCallBack;
 
-        public StoreUserDataAsyncTask(User user,GetUserCallback userCallback){
+        public StoreUserDataAsyncTask(User user,GetConnectionCallBack connectionCallBack){
             this.user=user;
-            this.userCallback=userCallback;
+            this.connectionCallBack=connectionCallBack;
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected String doInBackground(String... params) {
             ArrayList<NameValuePair> dataToSend=new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("ad",user.getAd()));
             dataToSend.add(new BasicNameValuePair("soyad",user.getSoyad()));
@@ -91,20 +94,52 @@ public class ServerRequests {
             HttpClient client=new DefaultHttpClient(httpRequestParams);
             HttpPost post=new HttpPost(SERVER_ADDRESS+"Register.php");
 
+            String jsonResult = "";
             try{
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));
-                client.execute(post);
+                HttpResponse response=client.execute(post);
+
+                jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+
+                //HttpEntity entity=httpResponse.getEntity();
+               // String result= EntityUtils.toString(entity);
+               // System.out.println(result);
+                //JSONObject jo=new JSONObject(result);
+                //returnedInt=jo.getInt(result);
+
             }catch(Exception e){
                 e.printStackTrace();
             }
-            return null;
+            return jsonResult;
         }
 
+        /*@Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }*/
+
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
             progressDialog.dismiss();
-            userCallback.done(null);
-            super.onPostExecute(aVoid);
+            connectionCallBack.done(result);
+        }
+
+        private StringBuilder inputStreamToString(InputStream is) {
+
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            try {
+                while ((rLine = br.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return answer;
         }
     }
 

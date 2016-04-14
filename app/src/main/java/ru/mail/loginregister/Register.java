@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Register extends ActionBarActivity implements View.OnClickListener {
 
     Button bRegister;
@@ -87,11 +90,35 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
 
     private void registerUser(User user) {
         ServerRequests serverRequests = new ServerRequests(this);
-        serverRequests.storeUserDataInBackground(user, new GetUserCallback() {
+        serverRequests.storeUserDataInBackground(user, new GetConnectionCallBack(){
             @Override
-            public void done(User returnedUser) {
-                startActivity(new Intent(Register.this, Login.class));
+            public void done(String result) {
+                if(result.equals("") || result == null){
+                    Toast.makeText(Register.this, "Server baglanti hatasi!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                int jsonResult = returnParsedJsonObject(result);
+                if(jsonResult == 0){
+                    Toast.makeText(Register.this, "Invalid username or password or email", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(jsonResult == 1){
+                    Intent intent = new Intent(Register.this, Login.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
+    private int returnParsedJsonObject(String result){
+
+        JSONObject resultObject = null;
+        int returnedResult = 0;
+        try {
+            resultObject = new JSONObject(result);
+            returnedResult = resultObject.getInt("success");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return returnedResult;
     }
 }
