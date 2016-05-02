@@ -185,6 +185,9 @@ public class MapsActivity extends FragmentActivity implements
         alertDialogBuilder.setView(promptView);
 
         final EditText firmaAdi = (EditText) promptView.findViewById(R.id.etFirmaAdi);
+        final EditText il = (EditText) promptView.findViewById(R.id.et_il);
+        final EditText ilce = (EditText) promptView.findViewById(R.id.et_ilce);
+        final EditText alan = (EditText) promptView.findViewById(R.id.et_alan);
         final TextView lat=(TextView)promptView.findViewById(R.id.tvLatitude);
         final TextView lon=(TextView)promptView.findViewById(R.id.tvLongtitude);
 
@@ -198,11 +201,16 @@ public class MapsActivity extends FragmentActivity implements
                 .setPositiveButton("Ekle", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String firmaadi=firmaAdi.getText().toString();
                         User user=userLocalStore.getLoggedInUser();
                         long tcno=user.getTc_no();
 
-                        Firma firma=new Firma(tcno,firmaadi,latitude,longitude);
+                        String firmaadi=firmaAdi.getText().toString();
+                        String il_str=il.getText().toString();
+                        String ilce_str=ilce.getText().toString();
+                        String alan_str=alan.getText().toString();
+
+
+                        Firma firma=new Firma(tcno,firmaadi,il_str,ilce_str,alan_str,latitude,longitude);
                         firma_kayit(firma);
                     }
                 })

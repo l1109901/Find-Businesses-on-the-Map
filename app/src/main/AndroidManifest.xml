@@ -64,7 +64,10 @@
 
         <activity
             android:name=".Is_Arama"
-            android:label="@string/title_activity_is__arama"></activity>
+            android:label="@string/title_activity_is__arama" />
+        <activity
+            android:name=".Randevu_Islemleri"
+            android:label="@string/title_activity_randevu__islemleri"></activity>
     </application>
 
 </manifest>

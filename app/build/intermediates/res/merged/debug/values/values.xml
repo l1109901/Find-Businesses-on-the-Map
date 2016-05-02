@@ -236,6 +236,10 @@
     <string name="app_name">Ara Proje</string>
     <string name="auth_google_play_services_client_facebook_display_name">Facebook</string>
     <string name="auth_google_play_services_client_google_display_name">Google</string>
+    <string name="btn_anamenu">Ana Menu</string>
+    <string name="btn_iptal_msj">Iptal</string>
+    <string name="btn_send_msj">Gonder</string>
+    <string name="btn_set_time">Saat</string>
     <string name="cast_notification_connected_message">Connected to <ns1:g id="name">%1$s</ns1:g></string>
     <string name="cast_notification_connecting_message">Connecting to <ns1:g id="name">%1$s</ns1:g></string>
     <string name="cast_notification_disconnect">Disconnect</string>
@@ -273,6 +277,7 @@
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="create_calendar_message">Allow Ad to create a calendar event?</string>
     <string name="create_calendar_title">Create calendar event</string>
+    <string name="date_button_set">Tarih Seç</string>
     <string name="decline">Decline</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyC93uz3-I5jV7Yke-N98l0cCLev-Uo3lAE
@@ -296,6 +301,7 @@
     <string name="title_activity_main_for_company">MainForCompany</string>
     <string name="title_activity_main_map">MainMap</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_randevu__islemleri">Randevu_Islemleri</string>
     <string name="title_activity_register">Kayıt</string>
     <string name="title_activity_register_isveren">Register_isveren</string>
     <string name="title_activity_selection">Seçim</string>

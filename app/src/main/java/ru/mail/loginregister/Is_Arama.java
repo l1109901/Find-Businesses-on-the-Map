@@ -1,8 +1,11 @@
 package ru.mail.loginregister;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -14,11 +17,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.util.ArrayList;
 
-public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
     UserLocalStore userLocalStore;
@@ -26,10 +29,15 @@ public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, Go
     //Google ApiClient
     private GoogleApiClient googleApiClient;
 
+    private Button geri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_is__arama);
+        setContentView(R.layout.activity_is_arama);
+
+        geri=(Button)findViewById(R.id.btn_anamenu);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -46,6 +54,10 @@ public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, Go
         getFirmData();
     }
 
+    public void anamenu(View view){
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -56,6 +68,7 @@ public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, Go
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(turkey));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(turkey, 6));
 
+        mMap.setOnMarkerClickListener(this);
     }
 
     private void getFirmData(){
@@ -63,7 +76,7 @@ public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, Go
         serverRequests.fetchLocationDataInBackground(new GetFirmCallBack() {
             @Override
             public void done(ArrayList<Firma> returnedFirma) {
-                for (int i=0;i<returnedFirma.size();i++){
+                for (int i = 0; i < returnedFirma.size(); i++) {
                     LatLng location = new LatLng(returnedFirma.get(i).getLatitude(), returnedFirma.get(i).getLongtitude());
                     mMap.addMarker(new MarkerOptions().position(location).title(returnedFirma.get(i).getFirmaAdi()));
                 }
@@ -115,4 +128,32 @@ public class Is_Arama extends FragmentActivity implements OnMapReadyCallback, Go
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        String firma_adi=marker.getTitle().toString();
+        Double lat=marker.getPosition().latitude;//firma's latitude
+        Double lon=marker.getPosition().longitude;//firma's longtitude
+
+        Intent i = new Intent(Is_Arama.this, Randevu_Islemleri.class);
+
+        i.putExtra("firma_adi",firma_adi);
+        i.putExtra("lat",lat);
+        i.putExtra("lon",lon);
+
+        startActivity(i);
+
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 }

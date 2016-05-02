@@ -18,6 +18,24 @@
         android:layout_height="wrap_content"
         android:hint="Firma Adı"
         android:padding="10dp" />
+    <EditText
+        android:id="@+id/et_il"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Il"
+        android:padding="10dp" />
+    <EditText
+        android:id="@+id/et_ilce"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ilce"
+        android:padding="10dp" />
+    <EditText
+        android:id="@+id/et_alan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Alan"
+        android:padding="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

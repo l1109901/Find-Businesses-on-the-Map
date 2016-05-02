@@ -3,7 +3,6 @@ package ru.mail.loginregister;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -248,6 +247,9 @@ public class ServerRequests {
         protected Void doInBackground(Void... params) {
             ArrayList<NameValuePair> dataToSend=new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("firma_adi",firma.getFirmaAdi()));
+            dataToSend.add(new BasicNameValuePair("il",firma.getIl()));
+            dataToSend.add(new BasicNameValuePair("ilce",firma.getIlce()));
+            dataToSend.add(new BasicNameValuePair("alan",firma.getAlan()));
             dataToSend.add(new BasicNameValuePair("latitude", firma.getLatitude()+""));
             dataToSend.add(new BasicNameValuePair("longtitude", firma.getLongtitude()+""));
             dataToSend.add(new BasicNameValuePair("tc_no", firma.getTcno()+""));
@@ -307,9 +309,12 @@ public class ServerRequests {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Long tc_no=jsonObject.getLong("tc_no");
                     String firma_adi=jsonObject.getString("firma_adi");
+                    String il=jsonObject.getString("il");
+                    String ilce=jsonObject.getString("ilce");
+                    String alan=jsonObject.getString("alan");
                     Double lat=jsonObject.getDouble("lat");
                     Double lon=jsonObject.getDouble("lon");
-                    Firma frm=new Firma(tc_no,firma_adi,lat,lon);
+                    Firma frm=new Firma(tc_no,firma_adi,il,ilce,alan,lat,lon);
                     firmas.add(frm);
                 }
             } catch (IOException e) {
@@ -318,7 +323,7 @@ public class ServerRequests {
             catch (JSONException e) {
                 e.printStackTrace();
             }
-            return firmas;//<<-------------------------------------burada hata veriyor!!!!!!!
+            return firmas;
         }
 
         @Override

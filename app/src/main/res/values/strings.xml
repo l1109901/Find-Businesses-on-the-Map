@@ -10,5 +10,10 @@
     <string name="title_activity_main_map">MainMap</string>
     <string name="tap_instructions">tv</string>
     <string name="title_activity_is__arama">Map</string>
-
+    <string name="title_activity_randevu__islemleri">Randevu_Islemleri</string>
+    <string name="date_button_set">Tarih Seç</string>
+    <string name="btn_set_time">Saat</string>
+    <string name="btn_send_msj">Gonder</string>
+    <string name="btn_iptal_msj">Iptal</string>
+    <string name="btn_anamenu">Ana Menu</string>
 </resources>

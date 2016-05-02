@@ -84,6 +84,9 @@
         <activity
             android:name="ru.mail.loginregister.Is_Arama"
             android:label="@string/title_activity_is__arama" />
+        <activity
+            android:name="ru.mail.loginregister.Randevu_Islemleri"
+            android:label="@string/title_activity_randevu__islemleri" />
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
