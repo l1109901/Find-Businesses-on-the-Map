@@ -37,6 +37,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:installLocation="auto"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
@@ -87,6 +88,16 @@
         <activity
             android:name="ru.mail.loginregister.Randevu_Islemleri"
             android:label="@string/title_activity_randevu__islemleri" />
+        <activity
+            android:name="ru.mail.loginregister.Egitim_bilgisi_ekle"
+            android:label="Egitim Bilgisi Girişi" >
+        </activity>
+        <activity
+            android:name="ru.mail.loginregister.Randevular"
+            android:label="Randevular" >
+        </activity>
+        <activity android:name="ru.mail.loginregister.firma_bilgileri_girme" >
+        </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

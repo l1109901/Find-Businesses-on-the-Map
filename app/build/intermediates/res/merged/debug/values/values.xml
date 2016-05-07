@@ -292,6 +292,11 @@
     <string name="mr_media_route_controller_stop">Stop casting</string>
     <string name="mr_system_route_name">System</string>
     <string name="mr_user_route_category_name">Devices</string>
+    <string name="spinner_bolum">Bolüm</string>
+    <string name="spinner_il">İller</string>
+    <string name="spinner_ilce">İlceler</string>
+    <string name="spinner_okuladi">Üniversite</string>
+    <string name="spinner_yil">Mezuniyet Yılı</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>

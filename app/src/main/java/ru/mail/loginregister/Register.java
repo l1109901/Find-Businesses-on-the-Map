@@ -11,13 +11,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Register extends ActionBarActivity implements View.OnClickListener {
 
-    Button bRegister;
+    Button bRegister,bSignin;
     EditText etAd, etSoyad, etTC_NO, etEmail,etTel,etKullanici_adi,etParola1,etParola2;
     ScrollView scrlvw;
     CheckBox ch1,ch2;
@@ -41,6 +40,8 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
         ch2 = (CheckBox) findViewById(R.id.ch2);
 
         bRegister = (Button) findViewById(R.id.bRegister);
+        bSignin = (Button)findViewById(R.id.bSignin);
+        bSignin.setOnClickListener(this);
         bRegister.setOnClickListener(this);
     }
 
@@ -84,6 +85,9 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                                 });
                         alertDialog.show();
                 }
+                break;
+            case R.id.bSignin:
+                startActivity(new Intent(this,Login.class));
                 break;
         }
     }

@@ -52,7 +52,6 @@ public class MainForCompany extends Activity implements View.OnClickListener {
         tvEmail.setText(user.getEmail());
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){

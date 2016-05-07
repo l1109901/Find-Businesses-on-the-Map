@@ -16,4 +16,9 @@
     <string name="btn_send_msj">Gonder</string>
     <string name="btn_iptal_msj">Iptal</string>
     <string name="btn_anamenu">Ana Menu</string>
+    <string name="spinner_okuladi">Üniversite</string>
+    <string name="spinner_bolum">Bolüm</string>
+    <string name="spinner_yil">Mezuniyet Yılı</string>
+    <string name="spinner_ilce">İlceler</string>
+    <string name="spinner_il">İller</string>
 </resources>

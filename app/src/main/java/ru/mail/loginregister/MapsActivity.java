@@ -1,15 +1,11 @@
 package ru.mail.loginregister;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.ConnectionResult;
@@ -66,10 +62,8 @@ public class MapsActivity extends FragmentActivity implements
 
         // Add a markeVr in Sydney and move the camera
         LatLng turkey = new LatLng(39.1667, 35.6667);
-        //mMap.addMarker(new MarkerOptions().position(turkey).draggable(true));
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(turkey));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(turkey, 4) );
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(turkey, 4));
 
         mMap.setOnMarkerDragListener(this);
         mMap.setOnMapLongClickListener(this);
@@ -135,28 +129,12 @@ public class MapsActivity extends FragmentActivity implements
 
         //Moving the camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
-        //Animating the camera
-        //mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
-        //Displaying current coordinates in toast
-        //Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
-
 
     @Override
     public void onConnected(Bundle bundle) {
         getCurrentLocation();
     }
-
-    @Override
-    public void onConnectionSuspended(int i) {}
-
-    @Override
-    public void onClick(View v) {}
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {}
 
     @Override
     public void onMapLongClick(LatLng latLng) {
@@ -172,73 +150,14 @@ public class MapsActivity extends FragmentActivity implements
         latitude=latLng.latitude;
         longitude=latLng.longitude;
 
-        String msg = latitude + ", " + longitude;
-        //Displaying current coordinates in toast
-        //Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-        showInputDialog(latitude,longitude);
+        Intent i = new Intent(MapsActivity.this, firma_bilgileri_girme.class);
+        i.putExtra("lat",latitude);
+        i.putExtra("lon",longitude);
+        startActivity(i);
     }
 
-    protected void showInputDialog(final double latitude, final double longitude) {
-        LayoutInflater layoutInflater = LayoutInflater.from(MapsActivity.this);
-        View promptView = layoutInflater.inflate(R.layout.firma_bilgileri, null);
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MapsActivity.this);
-        alertDialogBuilder.setView(promptView);
-
-        final EditText firmaAdi = (EditText) promptView.findViewById(R.id.etFirmaAdi);
-        final EditText il = (EditText) promptView.findViewById(R.id.et_il);
-        final EditText ilce = (EditText) promptView.findViewById(R.id.et_ilce);
-        final EditText alan = (EditText) promptView.findViewById(R.id.et_alan);
-        final TextView lat=(TextView)promptView.findViewById(R.id.tvLatitude);
-        final TextView lon=(TextView)promptView.findViewById(R.id.tvLongtitude);
-
-        final String latstr= String.valueOf((latitude));
-        final String lonstr=String.valueOf((longitude));
-        lat.setText(latstr);
-        lon.setText(lonstr);
-
-        // setup a dialog window
-        alertDialogBuilder.setCancelable(false)
-                .setPositiveButton("Ekle", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        User user=userLocalStore.getLoggedInUser();
-                        long tcno=user.getTc_no();
-
-                        String firmaadi=firmaAdi.getText().toString();
-                        String il_str=il.getText().toString();
-                        String ilce_str=ilce.getText().toString();
-                        String alan_str=alan.getText().toString();
-
-
-                        Firma firma=new Firma(tcno,firmaadi,il_str,ilce_str,alan_str,latitude,longitude);
-                        firma_kayit(firma);
-                    }
-                })
-                .setNegativeButton("Iptal",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-        // create an alert dialog
-        AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
-    }
-
-    private void firma_kayit(Firma firma) {
-        ServerRequests serverRequests=new ServerRequests(this);
-        serverRequests.storeFirmaDataInBackground(firma);
-    }
-
-    @Override
-    public void onMarkerDragStart(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-
+    public void anasayfa(View view){
+        startActivity(new Intent(this, MainForCompany.class));
     }
 
     @Override
@@ -250,4 +169,21 @@ public class MapsActivity extends FragmentActivity implements
         //Moving the map
         moveMap();
     }
+
+    public void cikis(View view){
+        userLocalStore.clearUserData();
+        userLocalStore.setUserLoggedIn(false);
+        startActivity(new Intent(this, Login.class));
+    }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {}
+    @Override
+    public void onMarkerDrag(Marker marker) {}
+    @Override
+    public void onConnectionSuspended(int i) {}
+    @Override
+    public void onClick(View v) {}
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {}
 }

@@ -77,25 +77,45 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.50">
 
-        <CheckBox
-            android:layout_width="166dp"
-            android:layout_height="wrap_content"
-            android:text="İş arayan"
-            android:id="@+id/ch1"
-            android:checked="false" />
 
-        <CheckBox
+        <RadioGroup
+            android:id="@+id/radio_group_list_selector"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="İşveren"
-            android:id="@+id/ch2"
-            android:checked="false" />
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+
+            android:padding="4dp" >
+
+            <CheckBox
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:text="İş arayan"
+                android:id="@+id/ch1"
+                android:checked="false" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="İşveren"
+                android:id="@+id/ch2"
+                android:checked="false" />
+        </RadioGroup>
     </LinearLayout>
 
     <Button
         android:id="@+id/bRegister"
         android:text="Kayıt Ol"
+        android:layout_marginBottom="10dp"
+        android:background="#318CE7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/bSignin"
+            android:text="Giriş"
+            android:layout_marginBottom="10dp"
+            android:background="#318CE7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 </LinearLayout>
 </ScrollView>

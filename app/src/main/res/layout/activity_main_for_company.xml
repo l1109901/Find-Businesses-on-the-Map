@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="10dp"
     android:layout_width="match_parent"
@@ -33,35 +32,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Konum Bilgileri Giriniz"
+        android:layout_marginBottom="10dp"
+        android:background="#318CE7"
         android:id="@+id/bKonum"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:id="@+id/bLogout2"
         android:text="Çıkış"
+        android:background="#318CE7"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/result1"
-        android:layout_gravity="center_horizontal" />
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/result2"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/result3"
-        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

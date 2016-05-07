@@ -7,14 +7,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends ActionBarActivity implements View.OnClickListener{
 
-    Button bLogin;
+    Button bLogin,bSignup;
     EditText etUsername,etPassword;
-    TextView tvRegisterLink;
     UserLocalStore userLocalStore;
 
     @Override
@@ -26,10 +24,10 @@ public class Login extends ActionBarActivity implements View.OnClickListener{
         etUsername=(EditText)findViewById(R.id.etKullanici_adi);
         etPassword=(EditText)findViewById(R.id.etParola1);
         bLogin=(Button)findViewById(R.id.bLogin);
-        tvRegisterLink=(TextView)findViewById(R.id.tvRegisterLink);
+        bSignup=(Button)findViewById(R.id.bSignup);
 
         bLogin.setOnClickListener(this);
-        tvRegisterLink.setOnClickListener(this);
+        bSignup.setOnClickListener(this);
     }
 
     @Override
@@ -45,7 +43,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener{
                     authenticate(user);
                 }
                 break;
-            case R.id.tvRegisterLink:
+            case R.id.bSignup:
                 startActivity(new Intent(this,Register.class));
                 break;
         }

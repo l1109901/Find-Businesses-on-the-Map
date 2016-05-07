@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.mail.loginregister">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,6 +17,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
+        android:installLocation="auto"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -68,6 +70,17 @@
         <activity
             android:name=".Randevu_Islemleri"
             android:label="@string/title_activity_randevu__islemleri"></activity>
+        <activity android:name=".Egitim_bilgisi_ekle"
+            android:label="Egitim Bilgisi Girişi">
+
+        </activity>
+        <activity android:name=".Randevular"
+            android:label="Randevular">
+
+        </activity>
+        <activity android:name=".firma_bilgileri_girme">
+
+        </activity>
     </application>
 
 </manifest>

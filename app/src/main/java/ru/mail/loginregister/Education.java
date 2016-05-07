@@ -11,13 +11,10 @@ public class Education {
         this.mezuniyet_yili=mezuniyet_yili;
     }
 
-    public void setOkul_adi(String okul_adi){this.okul_adi=okul_adi;}
     public String getOkul_adi(){return okul_adi;}
 
-    public void setBolum(String bolum){this.bolum=bolum;}
     public String getBolum(){return bolum;}
 
-    public void setMezuniyet_yili(int mezuniyet_yili){this.mezuniyet_yili=mezuniyet_yili;}
     public int getMezuniyet_yili(){return mezuniyet_yili;}
 
 }

@@ -3,7 +3,6 @@ package ru.mail.loginregister;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,7 +18,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,6 +51,11 @@ public class ServerRequests {
         new StoreEducationDataAsyncTask(education,tcno).execute();
     }
 
+    public void storeRandevuDataInBackground(long tcno1,long tcno2,String tarih,String saat){
+        progressDialog.show();
+        new StoreRandevuDataAsyncTask(tcno1,tcno2,tarih,saat).execute();
+    }
+
     public void storeFirmaDataInBackground(Firma firma){
         progressDialog.show();
         new StoreFirmaDataAsyncTask(firma).execute();
@@ -63,6 +66,10 @@ public class ServerRequests {
         new FetchLocationDataAsyncTask(callBack).execute();
     }
 
+    public void fetchAlanInBackground(Double lat,Double lon,GetAlanCallBack callback){
+        progressDialog.show();
+        new FetchAlanDataAsyncTask(lat,lon,callback).execute();
+    }
 
     public class StoreUserDataAsyncTask extends AsyncTask<String,Void,String>{
 
@@ -234,6 +241,49 @@ public class ServerRequests {
         }
     }
 
+    public class StoreRandevuDataAsyncTask extends AsyncTask<Void,Void,Void> {
+
+        long tcno1,tcno2;
+        String tarih,saat;
+
+        public StoreRandevuDataAsyncTask(long tcno1,long tcno2,String tarih,String saat){
+            this.tcno1=tcno1;
+            this.tcno2=tcno2;
+            this.tarih=tarih;
+            this.saat=saat;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("tcno1",tcno1+""));
+            dataToSend.add(new BasicNameValuePair("tcno2", tcno2+""));
+            dataToSend.add(new BasicNameValuePair("tarih", tarih));
+            dataToSend.add(new BasicNameValuePair("saat", saat));
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"Randevu.php");
+
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                client.execute(post);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            super.onPostExecute(aVoid);
+        }
+    }
+
     public class StoreFirmaDataAsyncTask extends AsyncTask<Void,Void,Void> {
 
         Firma firma;
@@ -241,7 +291,6 @@ public class ServerRequests {
         public StoreFirmaDataAsyncTask(Firma firma){
             this.firma=firma;
         }
-
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -331,6 +380,59 @@ public class ServerRequests {
             progressDialog.dismiss();
             callback.done(firmas);
             super.onPostExecute(firmas);
+        }
+    }
+
+    public class FetchAlanDataAsyncTask extends AsyncTask<Void,Void,Firma>{
+
+        Double lat,lon;
+
+        GetAlanCallBack callBack;
+
+        public FetchAlanDataAsyncTask(Double lat,Double lon,GetAlanCallBack callback){
+            this.lat=lat;
+            this.lon=lon;
+            this.callBack=callback;
+        }
+
+        @Override
+        protected Firma doInBackground(Void... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("lat", lat + ""));
+            dataToSend.add(new BasicNameValuePair("lon", lon + ""));
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"FetchAlanData.php");
+
+            Firma firma=null;
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                HttpResponse httpResponse=client.execute(post);
+
+                HttpEntity entity=httpResponse.getEntity();
+                String result= EntityUtils.toString(entity);
+                System.out.println(result);
+
+                JSONArray jsonArray = new JSONArray(result);
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                long tcno=jsonObject.getLong("tc_no");
+                String alan=jsonObject.getString("alan");
+                firma=new Firma(tcno,alan);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return firma;
+        }
+
+        @Override
+        protected void onPostExecute(Firma firma) {
+            progressDialog.dismiss();
+            callBack.done(firma);
+            super.onPostExecute(firma);
         }
     }
 }

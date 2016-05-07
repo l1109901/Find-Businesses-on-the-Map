@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.ConnectionResult;
@@ -28,15 +27,12 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
 
     //Google ApiClient
     private GoogleApiClient googleApiClient;
-
     private Button geri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_is_arama);
-
-        geri=(Button)findViewById(R.id.btn_anamenu);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -55,7 +51,7 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
     }
 
     public void anamenu(View view){
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
@@ -67,7 +63,6 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
         //mMap.addMarker(new MarkerOptions().position(turkey).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(turkey));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(turkey, 6));
-
         mMap.setOnMarkerClickListener(this);
     }
 
@@ -113,21 +108,14 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
         AppIndex.AppIndexApi.end(googleApiClient, viewAction);
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {}
 
     @Override
-    public void onConnected(Bundle bundle) {
-
-    }
+    public void onConnectionSuspended(int i) {}
 
     @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
+    public void onConnectionFailed(ConnectionResult connectionResult) {}
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
@@ -137,13 +125,10 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
         Double lon=marker.getPosition().longitude;//firma's longtitude
 
         Intent i = new Intent(Is_Arama.this, Randevu_Islemleri.class);
-
         i.putExtra("firma_adi",firma_adi);
         i.putExtra("lat",lat);
         i.putExtra("lon",lon);
-
         startActivity(i);
-
         return false;
     }
 
@@ -156,4 +141,11 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
         startActivity(intent);
     }
 
+    public void anasayfa(View view){
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
+    public void cikis(View view){
+        startActivity(new Intent(this,Login.class));
+    }
 }

@@ -1,38 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dp">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Egitim Bilgisi" />
-
-    <EditText
-        android:id="@+id/etOkul"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Okul Adı"
-        android:padding="10dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Egitim Bilgisi"
+        android:background="#979696"
+        android:textAlignment="center"/>
 
-    <EditText
-        android:id="@+id/etBolum"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Bölüm"
-        android:padding="10dp"
-        android:layout_gravity="center_horizontal" />
+        android:text="Universite:"/>
 
-    <EditText
-        android:id="@+id/etMezunyet"
-        android:layout_width="match_parent"
+    <Spinner
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Mezuniyet Yılı"
-        android:padding="10dp"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/spinner_okuladi"
+        android:prompt="@string/spinner_okuladi"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Bolum:"/>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_bolum"
+        android:prompt="@string/spinner_bolum"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Mezuniyet Yili:"/>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_yil"
+        android:prompt="@string/spinner_yil"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="İptal"
+            android:background="#318CE7"
+            android:id="@+id/btn_iptal"
+            android:onClick="geri"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_ekle"
+            android:text="Ekle"
+            android:background="#318CE7"
+            android:onClick="ekle"/>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -20,6 +20,10 @@ public class Firma {
         this.latitude=latitude;
         this.longtitude=longitude;
     }
+    public Firma(long tcno,String alan){
+        this.tcno=tcno;
+        this.alan=alan;
+    }
 
     public long getTcno(){
         return tcno;

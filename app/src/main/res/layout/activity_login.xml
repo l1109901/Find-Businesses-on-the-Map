@@ -4,15 +4,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#009688">
+    android:background="#ffffff">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="#ffffff">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/jobs"
+            android:layout_marginBottom="30dp"/>
 
         <EditText
             android:id="@+id/etKullanici_adi"
@@ -34,15 +42,15 @@
             android:text="Giriş"
             android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#318CE7"/>
 
-        <TextView
-            android:id="@+id/tvRegisterLink"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
+        <Button
+            android:id="@+id/bSignup"
             android:text="Kayıt Ol"
-            android:layout_height="wrap_content" />
-
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:background="#318CE7"/>
     </LinearLayout>
 </ScrollView>
