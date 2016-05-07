@@ -38,8 +38,8 @@ public class Randevu_Islemleri extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_randevu_islemleri);
-        userLocalStore=new UserLocalStore(this);
 
+        userLocalStore=new UserLocalStore(this);
         firma_adi=(TextView)findViewById(R.id.tv_firma_adi);
         alan=(TextView)findViewById(R.id.tv_alan);
 
