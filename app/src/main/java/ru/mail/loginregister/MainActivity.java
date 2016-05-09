@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     private Button bEkle;
-    Button bLogout,bisara,brandevular;
+    Button bLogout,bisara,bisara2,brandevular;
     TextView tvAd,tvSoyad,tvEmail;
     UserLocalStore userLocalStore;
 
@@ -30,6 +30,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         bLogout.setOnClickListener(this);
         bisara=(Button)findViewById(R.id.b_isara);
         bisara.setOnClickListener(this);
+        bisara2=(Button)findViewById(R.id.b_isara_ayrintili);
+        bisara2.setOnClickListener(this);
         bEkle = (Button) findViewById(R.id.bEgitimEkle);
         bEkle.setOnClickListener(this);
         brandevular = (Button)findViewById(R.id.btn_randevular);
@@ -68,11 +70,15 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             case R.id.b_isara:
                 startActivity(new Intent(this, Is_Arama.class));
                 break;
+            case R.id.b_isara_ayrintili:
+                startActivity(new Intent(this, ayrintili_arama.class));
+                break;
             case R.id.bEgitimEkle:
                 startActivity(new Intent(this, Egitim_bilgisi_ekle.class));
                 break;
             case R.id.btn_randevular:
                 startActivity(new Intent(this, Randevular.class));
+                break;
         }
     }
 

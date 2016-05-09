@@ -98,6 +98,10 @@
         </activity>
         <activity android:name="ru.mail.loginregister.firma_bilgileri_girme" >
         </activity>
+        <activity android:name="ru.mail.loginregister.ayrintili_arama" >
+        </activity>
+        <activity android:name="ru.mail.loginregister.ayrintili_arama_sonuclari" >
+        </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

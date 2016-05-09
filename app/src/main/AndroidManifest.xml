@@ -81,6 +81,12 @@
         <activity android:name=".firma_bilgileri_girme">
 
         </activity>
+        <activity android:name=".ayrintili_arama">
+
+        </activity>
+        <activity android:name=".ayrintili_arama_sonuclari">
+
+        </activity>
     </application>
 
 </manifest>
