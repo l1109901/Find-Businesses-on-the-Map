@@ -70,5 +70,4 @@
             android:background="#318CE7"
             android:onClick="ekle"/>
     </RelativeLayout>
-
 </LinearLayout>
