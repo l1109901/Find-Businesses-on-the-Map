@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -28,6 +29,8 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
     //Google ApiClient
     private GoogleApiClient googleApiClient;
     private Button geri;
+
+    List<LatLng> points=new ArrayList<LatLng>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +74,24 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
         serverRequests.fetchLocationDataInBackground(new GetFirmCallBack() {
             @Override
             public void done(ArrayList<Firma> returnedFirma) {
+                double sum_lat=0,sum_lon=0,ort_lat,ort_lon;
+
                 for (int i = 0; i < returnedFirma.size(); i++) {
                     LatLng location = new LatLng(returnedFirma.get(i).getLatitude(), returnedFirma.get(i).getLongtitude());
+                    points.add(location);
+
+                    sum_lat=sum_lat+points.get(i).latitude;
+                    sum_lon=sum_lon+points.get(i).longitude;
+
                     mMap.addMarker(new MarkerOptions().position(location).title(returnedFirma.get(i).getFirmaAdi()));
                 }
+
+                ort_lat=sum_lat/returnedFirma.size();
+                ort_lon=sum_lon/returnedFirma.size();
+                LatLng result=new LatLng(ort_lat,ort_lon);
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(result));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(result, 6));
             }
         });
     }
@@ -127,7 +144,7 @@ public class Is_Arama extends FragmentActivity implements GoogleMap.OnMarkerClic
         Intent i = new Intent(Is_Arama.this, Randevu_Islemleri.class);
         i.putExtra("firma_adi",firma_adi);
         i.putExtra("lat",lat);
-        i.putExtra("lon",lon);
+        i.putExtra("lon", lon);
         startActivity(i);
         return false;
     }
