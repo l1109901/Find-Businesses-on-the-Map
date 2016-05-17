@@ -144,15 +144,15 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
                             LatLng location = new LatLng(returnedFirma.get(i).getLatitude(), returnedFirma.get(i).getLongtitude());
                             points.add(location);
                             mMap.addMarker(new MarkerOptions().position(location).title(returnedFirma.get(i).getFirmaAdi()));
-                        } else {//hicbisey secilmemis ise
+                        } else if(il.equals("Il seciniz")&&ilce.equals("Ilce Seciniz")){//hicbisey secilmemis ise
                             isyerleri.add(returnedFirma.get(i));
                             LatLng location = new LatLng(returnedFirma.get(i).getLatitude(), returnedFirma.get(i).getLongtitude());
                             points.add(location);
                             mMap.addMarker(new MarkerOptions().position(location).title(returnedFirma.get(i).getFirmaAdi()));
                         }
                     }
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(points.get(0)));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(points.get(0), 12));
+                    //mMap.moveCamera(CameraUpdateFactory.newLatLng(points.get(0)));
+                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(points.get(0), 12));
                     sortByDistance();
                 } else {
                     Toast.makeText(ayrintili_arama_sonuclari.this, "Internet Baglatinizi Kontrol Ediniz!",
