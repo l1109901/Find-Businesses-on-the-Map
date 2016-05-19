@@ -25,6 +25,12 @@ public class Firma {
         this.alan=alan;
     }
 
+    public Firma(String isim,double latitude,double longitude){
+        this.latitude=latitude;
+        this.longtitude=longitude;
+        this.firmaAdi=isim;
+    }
+
     public long getTcno(){
         return tcno;
     }
