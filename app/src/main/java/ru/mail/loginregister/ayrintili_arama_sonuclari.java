@@ -42,7 +42,8 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
         GoogleMap.OnMapLongClickListener,
         View.OnClickListener,
         GoogleMap.OnInfoWindowClickListener,
-        GMapV2Direction.DirecitonReceivedListener,LocationListener {
+        GMapV2Direction.DirecitonReceivedListener,LocationListener,
+        GoogleMap.OnMarkerClickListener{
 
     private Button btnDirection;
     ToggleButton tbMode;
@@ -64,6 +65,8 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
     List<Firma> isyerleri=new ArrayList<>();
 
     List<LatLng> points=new ArrayList<>();
+
+    private Marker myMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +145,7 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(points.get(0)));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(points.get(0), 12));
 
-                    mMap.addMarker(
+                    myMarker=mMap.addMarker(
                             new MarkerOptions()
                                     .position(myLocation)
                                     .title("Ben")
@@ -206,6 +209,7 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
         mMap = googleMap;
         mMap.setOnMarkerDragListener(this);
         mMap.setOnMapLongClickListener(this);
+        mMap.setOnMarkerClickListener(this);
     }
 
     @Override
@@ -237,28 +241,9 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
         AppIndex.AppIndexApi.end(googleApiClient, viewAction);
     }
 
-    //Function to move the map
-    private void moveMap() {
-        //String to display current latitude and longitude
-        String msg = latitude + ", "+longitude;
-
-        //Creating a LatLng Object to store Coordinates
-        LatLng latLng = new LatLng(latitude, longitude);
-
-
-        //Adding marker to map
-        mMap.addMarker(new MarkerOptions()
-                .position(latLng) //setting position
-                .draggable(true) //Making the marker draggable
-                .title("Current Location")); //Adding a title
-
-        //Moving the camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-    }
-
     public void anasayfa(View view){
         mMap.clear();
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, main_page_for_isci.class));
     }
 
     @Override
@@ -269,18 +254,12 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
 
         LocationServices.FusedLocationApi.requestLocationUpdates(
                 googleApiClient, mLocationRequest, this);
-
-        Location location=LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        myLocation=new LatLng(location.getLatitude(),location.getLongitude());
     }
-
-
 
     @Override
     public void onClick(View v) {
 
         if (v == btnDirection) {
-            mMap.clear();
 
             sortByDistance();
 
@@ -304,16 +283,6 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
 
     @Override
     public void OnDirectionListReceived(List<LatLng> mPointList) {
-
-        for(int i=0;i<isyerleri.size();i++) {
-            LatLng location = new LatLng(isyerleri.get(i).getLatitude(), isyerleri.get(i).getLongtitude());
-
-            mMap.addMarker(
-                    new MarkerOptions()
-                            .position(location)
-                            .title(isyerleri.get(i).getFirmaAdi())
-            );
-        }
 
         if (mPointList != null) {
             PolylineOptions rectLine = new PolylineOptions().width(10).color(
@@ -392,5 +361,34 @@ public class ayrintili_arama_sonuclari extends FragmentActivity implements
     @Override
     public void onLocationChanged(Location location) {
         myLocation=new LatLng(location.getLatitude(),location.getLongitude());
+    }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        if (!marker.equals(myMarker)){
+            String firma_adi=marker.getTitle().toString();
+            Double lat=marker.getPosition().latitude;//firma's latitude
+            Double lon=marker.getPosition().longitude;//firma's longtitude
+
+            Intent i = new Intent(ayrintili_arama_sonuclari.this, randevu_gonderme_islemleri.class);
+            i.putExtra("firma_adi",firma_adi);
+            i.putExtra("lat",lat);
+            i.putExtra("lon", lon);
+            startActivity(i);
+        }else{
+            Toast.makeText(this, "Bir İşyeri Seçiniz!.", Toast.LENGTH_LONG).show();
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

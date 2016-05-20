@@ -3,6 +3,8 @@ package ru.mail.loginregister;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServerRequests {
     ProgressDialog progressDialog;
@@ -51,9 +54,9 @@ public class ServerRequests {
         new StoreEducationDataAsyncTask(education,tcno).execute();
     }
 
-    public void storeRandevuDataInBackground(long tcno1,long tcno2,String tarih,String saat){
+    public void storeRandevuDataInBackground(long tcno1,long tcno2,String firma_adi,String tarih,String saat){
         progressDialog.show();
-        new StoreRandevuDataAsyncTask(tcno1,tcno2,tarih,saat).execute();
+        new StoreRandevuDataAsyncTask(tcno1,tcno2,firma_adi,tarih,saat).execute();
     }
 
     public void storeFirmaDataInBackground(Firma firma){
@@ -69,6 +72,139 @@ public class ServerRequests {
     public void fetchAlanInBackground(Double lat,Double lon,GetAlanCallBack callback){
         progressDialog.show();
         new FetchAlanDataAsyncTask(lat,lon,callback).execute();
+    }
+
+    public void fetchRandevuInBackground(long tcno,GetRandevularCallBack callback){
+        progressDialog.show();
+        new FetchRandevuDataAsyncTask(tcno,callback).execute();
+    }
+
+    public void deleteFromRandevuInBackground(int id, GetConnectionCallBack connectionCallBack){
+        progressDialog.show();
+        new DeleteRandevuDataAsyncTask(id,connectionCallBack).execute();
+    }
+
+    public void onaylaInBackground(int id, GetConnectionCallBack connectionCallBack){
+        progressDialog.show();
+        new onaylaDataAsyncTask(id,connectionCallBack).execute();
+    }
+
+    public class onaylaDataAsyncTask extends AsyncTask<String,Void,String>{
+
+        int id;
+        GetConnectionCallBack connectionCallBack;
+
+        public onaylaDataAsyncTask(int id,GetConnectionCallBack connectionCallBack){
+            this.id=id;
+            this.connectionCallBack=connectionCallBack;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("id",id+""));
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"onaylaRandevu.php");
+
+            String jsonResult = "";
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                HttpResponse response=client.execute(post);
+
+                jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return jsonResult;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            connectionCallBack.done(result);
+        }
+
+        private StringBuilder inputStreamToString(InputStream is) {
+
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            try {
+                while ((rLine = br.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return answer;
+        }
+    }
+
+    public class DeleteRandevuDataAsyncTask extends AsyncTask<String,Void,String>{
+
+        int id;
+        GetConnectionCallBack connectionCallBack;
+
+        public DeleteRandevuDataAsyncTask(int id,GetConnectionCallBack connectionCallBack){
+            this.id=id;
+            this.connectionCallBack=connectionCallBack;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("id",id+""));
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"deleteRandevu.php");
+
+            String jsonResult = "";
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                HttpResponse response=client.execute(post);
+
+                jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return jsonResult;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            connectionCallBack.done(result);
+        }
+
+        private StringBuilder inputStreamToString(InputStream is) {
+
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            try {
+                while ((rLine = br.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return answer;
+        }
     }
 
     public class StoreUserDataAsyncTask extends AsyncTask<String,Void,String>{
@@ -200,6 +336,67 @@ public class ServerRequests {
         }
     }
 
+    public class FetchRandevuDataAsyncTask extends AsyncTask<Void,Void,ArrayList<randevu>>{
+
+        long tcno;
+        GetRandevularCallBack callback;
+
+        public FetchRandevuDataAsyncTask(long tcno,GetRandevularCallBack callback){
+            this.tcno=tcno;
+            this.callback=callback;
+        }
+
+        @Override
+        protected ArrayList<randevu> doInBackground(Void... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("tcno", tcno + ""));//alici tcno
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"FetchRandevuData.php");
+
+            ArrayList<randevu> msj=null;
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                HttpResponse httpResponse=client.execute(post);
+
+                HttpEntity entity=httpResponse.getEntity();
+                String result= EntityUtils.toString(entity);
+                System.out.println(result);
+                msj=new ArrayList<randevu>();
+                JSONArray jsonArray = new JSONArray(result);
+
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    int id=jsonObject.getInt("id");
+                    String firma_adi=jsonObject.getString("firma_adi");
+                    long tc_no=jsonObject.getLong("tcno");
+                    String isim=jsonObject.getString("ad");
+                    String soyad=jsonObject.getString("soyad");
+                    String alan=jsonObject.getString("alan");
+                    String tarih=jsonObject.getString("tarih");
+                    String saat=jsonObject.getString("saat");
+                    int durum=jsonObject.getInt("durum");
+                    randevu rv=new randevu(id,firma_adi,tc_no,isim,soyad,alan,tarih,saat,durum);
+                    msj.add(rv);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return msj;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<randevu> msj){
+            progressDialog.dismiss();
+            callback.done(msj);
+            super.onPostExecute(msj);
+        }
+    }
+
     public class StoreEducationDataAsyncTask extends AsyncTask<Void,Void,Void> {
 
         long tcno;
@@ -244,11 +441,12 @@ public class ServerRequests {
     public class StoreRandevuDataAsyncTask extends AsyncTask<Void,Void,Void> {
 
         long tcno1,tcno2;
-        String tarih,saat;
+        String firma_adi,tarih,saat;
 
-        public StoreRandevuDataAsyncTask(long tcno1,long tcno2,String tarih,String saat){
+        public StoreRandevuDataAsyncTask(long tcno1,long tcno2,String firma_adi,String tarih,String saat){
             this.tcno1=tcno1;
             this.tcno2=tcno2;
+            this.firma_adi=firma_adi;
             this.tarih=tarih;
             this.saat=saat;
         }
@@ -258,6 +456,7 @@ public class ServerRequests {
             ArrayList<NameValuePair> dataToSend=new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("tcno1",tcno1+""));
             dataToSend.add(new BasicNameValuePair("tcno2", tcno2+""));
+            dataToSend.add(new BasicNameValuePair("firma_adi",firma_adi));
             dataToSend.add(new BasicNameValuePair("tarih", tarih));
             dataToSend.add(new BasicNameValuePair("saat", saat));
 

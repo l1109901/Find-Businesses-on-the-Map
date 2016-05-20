@@ -42,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="ru.mail.loginregister.MainActivity"
+            android:name="ru.mail.loginregister.main_page_for_isci"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,13 +51,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ru.mail.loginregister.Login"
+            android:name="ru.mail.loginregister.MainActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name="ru.mail.loginregister.Register"
             android:label="@string/title_activity_register" />
         <activity
-            android:name="ru.mail.loginregister.MainForCompany"
+            android:name="ru.mail.loginregister.main_page_for_firma"
             android:label="@string/title_activity_main_for_company" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -83,17 +83,17 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="ru.mail.loginregister.Is_Arama"
+            android:name="ru.mail.loginregister.tum_isyerleri_arama"
             android:label="@string/title_activity_is__arama" />
         <activity
-            android:name="ru.mail.loginregister.Randevu_Islemleri"
+            android:name="ru.mail.loginregister.randevu_gonderme_islemleri"
             android:label="@string/title_activity_randevu__islemleri" />
         <activity
-            android:name="ru.mail.loginregister.Egitim_bilgisi_ekle"
+            android:name="ru.mail.loginregister.egitim_bilgisi_ekleme"
             android:label="Egitim Bilgisi Girişi" >
         </activity>
         <activity
-            android:name="ru.mail.loginregister.Randevular"
+            android:name="ru.mail.loginregister.randevular_isci"
             android:label="Randevular" >
         </activity>
         <activity android:name="ru.mail.loginregister.firma_bilgileri_girme" >
@@ -101,6 +101,8 @@
         <activity android:name="ru.mail.loginregister.ayrintili_arama" >
         </activity>
         <activity android:name="ru.mail.loginregister.ayrintili_arama_sonuclari" >
+        </activity>
+        <activity android:name="ru.mail.loginregister.randevular_firma" >
         </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity

@@ -87,7 +87,7 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                 }
                 break;
             case R.id.bSignin:
-                startActivity(new Intent(this,Login.class));
+                startActivity(new Intent(this,MainActivity.class));
                 break;
         }
     }
@@ -107,7 +107,7 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                     return;
                 }
                 if(jsonResult == 1){
-                    Intent intent = new Intent(Register.this, Login.class);
+                    Intent intent = new Intent(Register.this, MainActivity.class);
                     startActivity(intent);
                 }
             }

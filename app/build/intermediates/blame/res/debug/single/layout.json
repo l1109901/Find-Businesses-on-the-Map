@@ -8,6 +8,14 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_icon.xml"
     },
     {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_randevular_firma.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_randevular_firma.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_listview.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_listview.xml"
+    },
+    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_randevular_isci.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_randevular_isci.xml"
     },
@@ -32,10 +40,6 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_login.xml"
-    },
-    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_big_media.xml"
     },
@@ -54,6 +58,10 @@
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",

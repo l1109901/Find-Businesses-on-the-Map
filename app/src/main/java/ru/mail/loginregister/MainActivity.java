@@ -1,84 +1,84 @@
 package ru.mail.loginregister;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity implements OnClickListener {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
-    private Button bEkle;
-    Button bLogout,bisara,bisara2,brandevular;
-    TextView tvAd,tvSoyad,tvEmail;
+    Button bLogin,bSignup;
+    EditText etUsername,etPassword;
     UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_for_isci);
+        setContentView(R.layout.activity_main);
         userLocalStore=new UserLocalStore(this);
 
-        //components from MainActivity.xml
-        tvAd=(TextView)findViewById(R.id.tvAd);
-        tvSoyad=(TextView)findViewById(R.id.tvSoyad);
-        tvEmail=(TextView)findViewById(R.id.tvEmail);
+        etUsername=(EditText)findViewById(R.id.etKullanici_adi);
+        etPassword=(EditText)findViewById(R.id.etParola1);
+        bLogin=(Button)findViewById(R.id.bLogin);
+        bSignup=(Button)findViewById(R.id.bSignup);
 
-        bLogout=(Button)findViewById(R.id.bLogout);
-        bLogout.setOnClickListener(this);
-        bisara=(Button)findViewById(R.id.b_isara);
-        bisara.setOnClickListener(this);
-        bisara2=(Button)findViewById(R.id.b_isara_ayrintili);
-        bisara2.setOnClickListener(this);
-        bEkle = (Button) findViewById(R.id.bEgitimEkle);
-        bEkle.setOnClickListener(this);
-        brandevular = (Button)findViewById(R.id.btn_randevular);
-        brandevular.setOnClickListener(this);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(authenticate()){
-            displayUserDetails();
-        }else{
-            startActivity(new Intent(MainActivity.this,Login.class));
-        }
-    }
-
-    private boolean authenticate(){
-        return userLocalStore.getUserLoggedIn();
-    }
-
-    private void displayUserDetails(){
-        User user=userLocalStore.getLoggedInUser();
-        tvAd.setText(user.getAd());
-        tvSoyad.setText(user.getSoyad());
-        tvEmail.setText(user.getEmail());
+        bLogin.setOnClickListener(this);
+        bSignup.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.bLogout:
-                userLocalStore.clearUserData();
-                userLocalStore.setUserLoggedIn(false);
-                startActivity(new Intent(this, Login.class));
+        switch(v.getId()){//this is a if statement like if(v.getId()==R.id.bLogin)
+            case R.id.bLogin:
+                String username=etUsername.getText().toString().trim();
+                String password=etPassword.getText().toString().trim();
+                if (username.isEmpty() || password.isEmpty()){
+                    Toast.makeText(this,"Tüm alanların doldurulması gereklidir", Toast.LENGTH_LONG).show();
+                }else {
+                    User user=new User(username,password);
+                    authenticate(user);
+                }
                 break;
-            case R.id.b_isara:
-                startActivity(new Intent(this, Is_Arama.class));
+            case R.id.bSignup:
+                startActivity(new Intent(this,Register.class));
                 break;
-            case R.id.b_isara_ayrintili:
-                startActivity(new Intent(this, ayrintili_arama.class));
-                break;
-            case R.id.bEgitimEkle:
-                startActivity(new Intent(this, Egitim_bilgisi_ekle.class));
-                break;
-            case R.id.btn_randevular:
-                startActivity(new Intent(this, Randevular.class));
-                break;
+        }
+    }
+
+    private void authenticate(User user) {
+        ServerRequests serverRequests=new ServerRequests(this);
+        serverRequests.fetchUserDataInBackground(user, new GetUserCallback() {
+            @Override
+            public void done(User returnedUser) {
+                if(returnedUser==null){
+                    showErrorMessage();
+                }else{
+                    logUserIn(returnedUser);
+                }
+            }
+        });
+    }
+
+    private void showErrorMessage(){
+        AlertDialog.Builder dialogBuilder=new AlertDialog.Builder(MainActivity.this);
+        dialogBuilder.setMessage("Yanlış kullanıcı bilgilerini");
+        dialogBuilder.setPositiveButton("Ok", null);
+        dialogBuilder.show();
+    }
+
+    private void logUserIn(User returnedUser) {
+        if(returnedUser.getId()==1){
+            userLocalStore.storeUserData(returnedUser);
+            userLocalStore.setUserLoggedIn(true);
+            startActivity(new Intent(this,main_page_for_isci.class));
+        }else{
+            userLocalStore.storeUserData(returnedUser);
+            userLocalStore.setUserLoggedIn(true);
+            startActivity(new Intent(this,main_page_for_firma.class));
         }
     }
 

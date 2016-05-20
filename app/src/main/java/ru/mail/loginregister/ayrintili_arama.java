@@ -217,6 +217,6 @@ public class ayrintili_arama extends Activity {
         startActivity(i);
     }
     public void iptal(View view){
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this,main_page_for_isci.class));
     }
 }

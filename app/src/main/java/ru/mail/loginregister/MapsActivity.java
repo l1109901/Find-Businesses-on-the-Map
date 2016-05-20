@@ -157,7 +157,7 @@ public class MapsActivity extends FragmentActivity implements
     }
 
     public void anasayfa(View view){
-        startActivity(new Intent(this, MainForCompany.class));
+        startActivity(new Intent(this, main_page_for_firma.class));
     }
 
     @Override
@@ -173,7 +173,7 @@ public class MapsActivity extends FragmentActivity implements
     public void cikis(View view){
         userLocalStore.clearUserData();
         userLocalStore.setUserLoggedIn(false);
-        startActivity(new Intent(this, Login.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override

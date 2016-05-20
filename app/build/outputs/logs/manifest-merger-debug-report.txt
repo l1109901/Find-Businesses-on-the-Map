@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:2:1-92:12
+ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:2:1-95:12
 	package
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:4:5-36
 		INJECTED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml
@@ -67,7 +67,7 @@ ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:17:5-75
 	android:name
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:17:22-72
 application
-ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:19:5-90:19
+ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:19:5-93:19
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:22.2.0] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services:8.1.0] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\8.1.0\AndroidManifest.xml:19:5-20
@@ -200,12 +200,12 @@ MERGED from [com.android.support:support-v4:22.2.0] C:\Users\gafur\git\araproje\
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:20:9-39
 	android:theme
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:25:9-40
-activity#ru.mail.loginregister.MainActivity
+activity#ru.mail.loginregister.main_page_for_isci
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:26:9-34:20
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:28:13-45
 	android:name
-		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:27:13-41
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:27:13-47
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:29:13-33:29
 action#android.intent.action.MAIN
@@ -216,24 +216,24 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:32:17-77
 	android:name
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:32:27-74
-activity#ru.mail.loginregister.Login
+activity#ru.mail.loginregister.MainActivity
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:35:9-37:60
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:37:13-57
 	android:name
-		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:36:13-34
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:36:13-41
 activity#ru.mail.loginregister.Register
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:38:9-40:63
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:40:13-60
 	android:name
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:39:13-37
-activity#ru.mail.loginregister.MainForCompany
+activity#ru.mail.loginregister.main_page_for_firma
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:41:9-43:71
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:43:13-68
 	android:name
-		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:42:13-43
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:42:13-48
 meta-data#com.google.android.geo.API_KEY
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:52:9-54:55
 	android:value
@@ -291,30 +291,30 @@ MERGED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\gafur
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:65:13-66
 	android:name
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:64:13-58
-activity#ru.mail.loginregister.Is_Arama
+activity#ru.mail.loginregister.tum_isyerleri_arama
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:67:9-69:64
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:69:13-61
 	android:name
-		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:68:13-37
-activity#ru.mail.loginregister.Randevu_Islemleri
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:68:13-48
+activity#ru.mail.loginregister.randevu_gonderme_islemleri
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:70:9-72:82
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:72:13-70
 	android:name
-		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:71:13-46
-activity#ru.mail.loginregister.Egitim_bilgisi_ekle
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:71:13-55
+activity#ru.mail.loginregister.egitim_bilgisi_ekleme
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:73:9-76:20
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:74:13-50
 	android:name
-		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:73:19-54
-activity#ru.mail.loginregister.Randevular
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:73:19-56
+activity#ru.mail.loginregister.randevular_isci
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:77:9-80:20
 	android:label
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:78:13-39
 	android:name
-		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:77:19-45
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:77:19-50
 activity#ru.mail.loginregister.firma_bilgileri_girme
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:81:9-83:20
 	android:name
@@ -327,6 +327,10 @@ activity#ru.mail.loginregister.ayrintili_arama_sonuclari
 ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:87:9-89:20
 	android:name
 		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:87:19-60
+activity#ru.mail.loginregister.randevular_firma
+ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:90:9-92:20
+	android:name
+		ADDED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:90:19-51
 uses-sdk
 INJECTED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\AndroidManifest.xml:20:5-43
@@ -528,7 +532,7 @@ MERGED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\gafur\git
 	android:required
 		ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\AndroidManifest.xml:25:8-31
 android:uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:2:1-92:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
+IMPLIED from C:\Users\gafur\git\araproje\app\src\main\AndroidManifest.xml:2:1-95:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
 uses-permission#com.google.android.c2dm.permission.RECEIVE
 ADDED from [com.google.android.gms:play-services-gcm:8.1.0] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\AndroidManifest.xml:21:5-82
 MERGED from [com.google.android.gms:play-services-gcm:8.1.0] C:\Users\gafur\git\araproje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\AndroidManifest.xml:21:5-82

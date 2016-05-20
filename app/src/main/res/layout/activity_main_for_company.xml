@@ -38,6 +38,14 @@
         android:layout_gravity="center_horizontal" />
 
     <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Randevu İşlemleri"
+        android:id="@+id/btn_randevular"
+        android:background="#318CE7"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
         android:id="@+id/bLogout2"
         android:text="Çıkış"
         android:background="#318CE7"

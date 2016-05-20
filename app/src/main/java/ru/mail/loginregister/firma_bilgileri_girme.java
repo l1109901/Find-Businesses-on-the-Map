@@ -236,7 +236,7 @@ public class firma_bilgileri_girme extends AppCompatActivity {
             ServerRequests serverRequests=new ServerRequests(this);
             serverRequests.storeFirmaDataInBackground(firma);
             Toast.makeText(this, "Firma Bilgisi Eklenmiştir.", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, MainForCompany.class));
+            startActivity(new Intent(this, main_page_for_firma.class));
         }
     }
 
