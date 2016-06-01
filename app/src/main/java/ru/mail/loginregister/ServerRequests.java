@@ -3,7 +3,6 @@ package ru.mail.loginregister;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.provider.MediaStore;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,7 +24,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
+
+import ru.mail.loginregister.siniflar.Education;
+import ru.mail.loginregister.siniflar.Firma;
+import ru.mail.loginregister.siniflar.Randevu;
+import ru.mail.loginregister.siniflar.User;
 
 public class ServerRequests {
     ProgressDialog progressDialog;
@@ -69,6 +72,11 @@ public class ServerRequests {
         new FetchLocationDataAsyncTask(callBack).execute();
     }
 
+    public void fetchOnaylananLocationDataInBackground(GetFirmCallBack callBack){
+        progressDialog.show();
+        new FetchOnaylananLocationDataAsyncTask(callBack).execute();
+    }
+
     public void fetchAlanInBackground(Double lat,Double lon,GetAlanCallBack callback){
         progressDialog.show();
         new FetchAlanDataAsyncTask(lat,lon,callback).execute();
@@ -77,6 +85,16 @@ public class ServerRequests {
     public void fetchRandevuInBackground(long tcno,GetRandevularCallBack callback){
         progressDialog.show();
         new FetchRandevuDataAsyncTask(tcno,callback).execute();
+    }
+
+    public void fetchRandevuCalisanInBackground(long tcno,GetRandevularCallBack callback){
+        progressDialog.show();
+        new FetchRandevuCalisanDataAsyncTask(tcno,callback).execute();
+    }
+
+    public void fetchEgitimBilgisiCalisanInBackground(long tcno,GetEducationCallBack callback){
+        progressDialog.show();
+        new FetchEgitimBilgisiCalisanDataAsyncTask(tcno,callback).execute();
     }
 
     public void deleteFromRandevuInBackground(int id, GetConnectionCallBack connectionCallBack){
@@ -336,7 +354,7 @@ public class ServerRequests {
         }
     }
 
-    public class FetchRandevuDataAsyncTask extends AsyncTask<Void,Void,ArrayList<randevu>>{
+    public class FetchRandevuDataAsyncTask extends AsyncTask<Void,Void,ArrayList<Randevu>>{
 
         long tcno;
         GetRandevularCallBack callback;
@@ -347,7 +365,7 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList<randevu> doInBackground(Void... params) {
+        protected ArrayList<Randevu> doInBackground(Void... params) {
             ArrayList<NameValuePair> dataToSend=new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("tcno", tcno + ""));//alici tcno
 
@@ -358,7 +376,7 @@ public class ServerRequests {
             HttpClient client=new DefaultHttpClient(httpRequestParams);
             HttpPost post=new HttpPost(SERVER_ADDRESS+"FetchRandevuData.php");
 
-            ArrayList<randevu> msj=null;
+            ArrayList<Randevu> msj=null;
             try{
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));
                 HttpResponse httpResponse=client.execute(post);
@@ -366,7 +384,7 @@ public class ServerRequests {
                 HttpEntity entity=httpResponse.getEntity();
                 String result= EntityUtils.toString(entity);
                 System.out.println(result);
-                msj=new ArrayList<randevu>();
+                msj=new ArrayList<Randevu>();
                 JSONArray jsonArray = new JSONArray(result);
 
                 for(int i=0;i<jsonArray.length();i++){
@@ -376,11 +394,10 @@ public class ServerRequests {
                     long tc_no=jsonObject.getLong("tcno");
                     String isim=jsonObject.getString("ad");
                     String soyad=jsonObject.getString("soyad");
-                    String alan=jsonObject.getString("alan");
                     String tarih=jsonObject.getString("tarih");
                     String saat=jsonObject.getString("saat");
                     int durum=jsonObject.getInt("durum");
-                    randevu rv=new randevu(id,firma_adi,tc_no,isim,soyad,alan,tarih,saat,durum);
+                    Randevu rv=new Randevu(id,firma_adi,tc_no,isim,soyad,tarih,saat,durum);
                     msj.add(rv);
                 }
             }catch(Exception e){
@@ -390,10 +407,125 @@ public class ServerRequests {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<randevu> msj){
+        protected void onPostExecute(ArrayList<Randevu> msj){
             progressDialog.dismiss();
             callback.done(msj);
             super.onPostExecute(msj);
+        }
+    }
+
+    public class FetchRandevuCalisanDataAsyncTask extends AsyncTask<Void,Void,ArrayList<Randevu>>{
+
+        long tcno;
+        GetRandevularCallBack callback;
+
+        public FetchRandevuCalisanDataAsyncTask(long tcno,GetRandevularCallBack callback){
+            this.tcno=tcno;
+            this.callback=callback;
+        }
+
+        @Override
+        protected ArrayList<Randevu> doInBackground(Void... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("tcno", tcno + ""));//alici tcno
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"FetchRandevuCalisan.php");
+
+            ArrayList<Randevu> msj=null;
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                HttpResponse httpResponse=client.execute(post);
+
+                HttpEntity entity=httpResponse.getEntity();
+                String result= EntityUtils.toString(entity);
+                System.out.println(result);
+                msj=new ArrayList<Randevu>();
+                JSONArray jsonArray = new JSONArray(result);
+
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    int id=jsonObject.getInt("id");
+                    String firma_adi=jsonObject.getString("firma_adi");
+                    long tc_no=jsonObject.getLong("tcno");
+                    String isim=jsonObject.getString("ad");
+                    String soyad=jsonObject.getString("soyad");
+                    String tarih=jsonObject.getString("tarih");
+                    String saat=jsonObject.getString("saat");
+                    int durum=jsonObject.getInt("durum");
+                    Randevu rv=new Randevu(id,firma_adi,tc_no,isim,soyad,tarih,saat,durum);
+                    msj.add(rv);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return msj;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Randevu> msj){
+            progressDialog.dismiss();
+            callback.done(msj);
+            super.onPostExecute(msj);
+        }
+    }
+
+    public class FetchEgitimBilgisiCalisanDataAsyncTask extends AsyncTask<Void,Void,ArrayList<Education>>{
+
+        long tcno;
+        GetEducationCallBack callback;
+
+        public FetchEgitimBilgisiCalisanDataAsyncTask(long tcno,GetEducationCallBack callback){
+            this.tcno=tcno;
+            this.callback=callback;
+        }
+
+        @Override
+        protected ArrayList<Education> doInBackground(Void... params) {
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("tcno", tcno + ""));//alici tcno
+
+            HttpParams httpRequestParams=new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client=new DefaultHttpClient(httpRequestParams);
+            HttpPost post=new HttpPost(SERVER_ADDRESS+"FetchEgitimBilgisiCalisan.php");
+
+            ArrayList<Education> edus=null;
+            try{
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                HttpResponse httpResponse=client.execute(post);
+
+                HttpEntity entity=httpResponse.getEntity();
+                String result= EntityUtils.toString(entity);
+                System.out.println(result);
+                edus=new ArrayList<Education>();
+                JSONArray jsonArray = new JSONArray(result);
+
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String okul_adi=jsonObject.getString("okul_adi");
+                    String bolum=jsonObject.getString("bolum");
+                    int yil=jsonObject.getInt("mezuniyet_yili");
+                    Education edu=new Education(okul_adi,bolum,yil);
+                    edus.add(edu);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return edus;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Education> edus){
+            progressDialog.dismiss();
+            callback.done(edus);
+            super.onPostExecute(edus);
         }
     }
 
@@ -542,6 +674,63 @@ public class ServerRequests {
 
             HttpClient client = new DefaultHttpClient(httpRequestParams);
             HttpPost post = new HttpPost(SERVER_ADDRESS + "SelectLatLon.php");
+
+            ArrayList<Firma> firmas=null;
+            try {
+                HttpResponse httpResponse = client.execute(post);
+                HttpEntity entity = httpResponse.getEntity();
+                String result;
+                result = EntityUtils.toString(entity);
+                System.out.println(result);
+                firmas=new ArrayList<Firma>();
+                JSONArray jsonArray = new JSONArray(result);
+
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Long tc_no=jsonObject.getLong("tc_no");
+                    String firma_adi=jsonObject.getString("firma_adi");
+                    String il=jsonObject.getString("il");
+                    String ilce=jsonObject.getString("ilce");
+                    String alan=jsonObject.getString("alan");
+                    Double lat=jsonObject.getDouble("lat");
+                    Double lon=jsonObject.getDouble("lon");
+                    Firma frm=new Firma(tc_no,firma_adi,il,ilce,alan,lat,lon);
+                    firmas.add(frm);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return firmas;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Firma> firmas){
+            progressDialog.dismiss();
+            callback.done(firmas);
+            super.onPostExecute(firmas);
+        }
+    }
+
+    public class FetchOnaylananLocationDataAsyncTask extends AsyncTask<Void,Void,ArrayList<Firma>> {
+
+        GetFirmCallBack callback;
+
+        public FetchOnaylananLocationDataAsyncTask(GetFirmCallBack callback) {
+            this.callback = callback;
+        }
+
+        @Override
+        protected ArrayList<Firma> doInBackground(Void... params) {
+
+            HttpParams httpRequestParams = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
+
+            HttpClient client = new DefaultHttpClient(httpRequestParams);
+            HttpPost post = new HttpPost(SERVER_ADDRESS + "selectOnaylanan.php");
 
             ArrayList<Firma> firmas=null;
             try {

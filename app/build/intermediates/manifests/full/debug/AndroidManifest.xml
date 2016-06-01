@@ -42,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="ru.mail.loginregister.main_page_for_isci"
+            android:name="ru.mail.loginregister.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,13 +51,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ru.mail.loginregister.MainActivity"
-            android:label="@string/title_activity_login" />
+            android:name="ru.mail.loginregister.calisan.main_page_for_isci"
+            android:label="@string/app_name" />
         <activity
             android:name="ru.mail.loginregister.Register"
             android:label="@string/title_activity_register" />
         <activity
-            android:name="ru.mail.loginregister.main_page_for_firma"
+            android:name="ru.mail.loginregister.firma.main_page_for_firma"
             android:label="@string/title_activity_main_for_company" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -72,7 +72,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="ru.mail.loginregister.MapsActivity"
+            android:name="ru.mail.loginregister.firma.maps_activity"
             android:label="@string/title_activity_maps" />
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -83,27 +83,22 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="ru.mail.loginregister.tum_isyerleri_arama"
-            android:label="@string/title_activity_is__arama" />
-        <activity
-            android:name="ru.mail.loginregister.randevu_gonderme_islemleri"
+            android:name="ru.mail.loginregister.randevu_gonderme_islemleri_calisan"
             android:label="@string/title_activity_randevu__islemleri" />
         <activity
-            android:name="ru.mail.loginregister.egitim_bilgisi_ekleme"
-            android:label="Egitim Bilgisi Girişi" >
-        </activity>
+            android:name="ru.mail.loginregister.calisan.egitim_bilgisi_ekleme"
+            android:label="Egitim Bilgisi Girişi" />
         <activity
-            android:name="ru.mail.loginregister.randevular_isci"
-            android:label="Randevular" >
-        </activity>
-        <activity android:name="ru.mail.loginregister.firma_bilgileri_girme" >
-        </activity>
-        <activity android:name="ru.mail.loginregister.ayrintili_arama" >
-        </activity>
-        <activity android:name="ru.mail.loginregister.ayrintili_arama_sonuclari" >
-        </activity>
-        <activity android:name="ru.mail.loginregister.randevular_firma" >
-        </activity>
+            android:name="ru.mail.loginregister.randevular_calisan"
+            android:label="Randevular" />
+        <activity android:name="ru.mail.loginregister.firma.firma_bilgileri_girme" />
+        <activity android:name="ru.mail.loginregister.calisan.ayrintili_arama_ve_yol" />
+        <activity android:name="ru.mail.loginregister.calisan.ayrintili_arama" />
+        <activity android:name="ru.mail.loginregister.ayrintili_arama_sonuclari_calisan" />
+        <activity android:name="ru.mail.loginregister.yol_cizimi_calisan" />
+        <activity android:name="ru.mail.loginregister.randevular_firma" />
+        <activity android:name="ru.mail.loginregister.yolcizimden_oncekisayfa_calisan" />
+        <activity android:name="ru.mail.loginregister.onaylananlar_yol_cizimi_calisan" />
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

@@ -16,8 +16,8 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_listview.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_randevular_isci.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_randevular_isci.xml"
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main_for_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_main_for_calisan.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
@@ -28,8 +28,16 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_lines.xml"
     },
     {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_yolcizimden_oncekisayfa_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_yolcizimden_oncekisayfa_calisan.xml"
+    },
+    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_demo.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\dialog_demo.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
@@ -96,10 +104,6 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\firma_bilgileri.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\firma_bilgileri.xml"
-    },
-    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_activity_chooser_view.xml"
     },
@@ -108,24 +112,12 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\egitim_bilgisi_ekle.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\egitim_bilgisi_ekle.xml"
-    },
-    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_is_arama.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_is_arama.xml"
-    },
-    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
-    },
-    {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_randevu_islemleri.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_randevu_islemleri.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_controller_material_dialog_b.xml",
@@ -138,10 +130,6 @@
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_menu_layout.xml"
-    },
-    {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ayrintili_arama_sonuclari.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_ayrintili_arama_sonuclari.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
@@ -160,6 +148,10 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_progress.xml"
     },
     {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\onaylananlar_yol_cizimi_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\onaylananlar_yol_cizimi_calisan.xml"
+    },
+    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_radio.xml"
     },
@@ -168,36 +160,48 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\firma_bilgileri_firma.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\firma_bilgileri_firma.xml"
+    },
+    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main_map.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_main_map.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_maps_firma.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_maps_firma.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_randevular_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_randevular_calisan.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout_ayrintili_arama.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\layout_ayrintili_arama.xml"
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_randevu_islemleri_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_randevu_islemleri_calisan.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main_for_firma.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_main_for_firma.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\yol_cizimii_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\yol_cizimii_calisan.xml"
+    },
+    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main_for_company.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_main_for_company.xml"
-    },
-    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_up_container.xml"
-    },
-    {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main_for_isci.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_main_for_isci.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
@@ -208,20 +212,28 @@
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_media_action.xml"
     },
     {
-        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_maps.xml",
-        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_maps.xml"
-    },
-    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\egitim_bilgisi_ekle_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\egitim_bilgisi_ekle_calisan.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_simple_dropdown_hint.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_simple_dropdown_hint.xml"
     },
     {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout_ayrintili_arama_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\layout_ayrintili_arama_calisan.xml"
+    },
+    {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
         "source": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_tumisyeri_arama_calisan.xml",
+        "source": "C:\\Users\\gafur\\git\\araproje\\app\\src\\main\\res\\layout\\activity_tumisyeri_arama_calisan.xml"
     },
     {
         "merged": "C:\\Users\\gafur\\git\\araproje\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",

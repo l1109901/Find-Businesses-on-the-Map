@@ -14,6 +14,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ru.mail.loginregister.siniflar.User;
+
 public class Register extends ActionBarActivity implements View.OnClickListener {
 
     Button bRegister,bSignin;
@@ -60,12 +62,15 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
 
                 int id2 = 0;
                 int count=0;
-                if(ch1.isChecked()){
+                if((ch1.isChecked()&&ch2.isChecked())||(!ch1.isChecked()&&!ch2.isChecked())){
+                    Toast.makeText(this, "Seçeneklerden birini seçiniz !", Toast.LENGTH_LONG).show();
+                }
+                else if(ch1.isChecked()){
                     id2=1;count++;
                 }else if(ch2.isChecked()){
                     id2=2;count++;
                 }
-                if ( count==0 || stc_no.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
+                else if ( count==0 || stc_no.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
                     Toast.makeText(this, "Tüm alanları doldurmanız gereklidir !", Toast.LENGTH_LONG).show();
                 }else if (parola1.equals(parola2)) {
                         long tc_no = Long.parseLong(stc_no);

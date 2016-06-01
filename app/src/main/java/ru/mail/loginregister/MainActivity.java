@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import ru.mail.loginregister.calisan.main_page_for_isci;
+import ru.mail.loginregister.firma.main_page_for_firma;
+import ru.mail.loginregister.siniflar.User;
+import ru.mail.loginregister.siniflar.UserLocalStore;
+
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     Button bLogin,bSignup;
