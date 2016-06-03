@@ -72,9 +72,9 @@ public class ServerRequests {
         new FetchLocationDataAsyncTask(callBack).execute();
     }
 
-    public void fetchOnaylananLocationDataInBackground(GetFirmCallBack callBack){
+    public void fetchOnaylananLocationDataInBackground(long tcno,GetFirmCallBack callBack){
         progressDialog.show();
-        new FetchOnaylananLocationDataAsyncTask(callBack).execute();
+        new FetchOnaylananLocationDataAsyncTask(tcno,callBack).execute();
     }
 
     public void fetchAlanInBackground(Double lat,Double lon,GetAlanCallBack callback){
@@ -717,13 +717,18 @@ public class ServerRequests {
     public class FetchOnaylananLocationDataAsyncTask extends AsyncTask<Void,Void,ArrayList<Firma>> {
 
         GetFirmCallBack callback;
+        long tcno;
 
-        public FetchOnaylananLocationDataAsyncTask(GetFirmCallBack callback) {
+        public FetchOnaylananLocationDataAsyncTask(long tcno,GetFirmCallBack callback) {
             this.callback = callback;
+            this.tcno=tcno;
         }
 
         @Override
         protected ArrayList<Firma> doInBackground(Void... params) {
+
+            ArrayList<NameValuePair> dataToSend=new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("tcno", tcno + ""));//alici tcno
 
             HttpParams httpRequestParams = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
@@ -734,6 +739,7 @@ public class ServerRequests {
 
             ArrayList<Firma> firmas=null;
             try {
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
                 HttpResponse httpResponse = client.execute(post);
                 HttpEntity entity = httpResponse.getEntity();
                 String result;
@@ -751,7 +757,9 @@ public class ServerRequests {
                     String alan=jsonObject.getString("alan");
                     Double lat=jsonObject.getDouble("lat");
                     Double lon=jsonObject.getDouble("lon");
-                    Firma frm=new Firma(tc_no,firma_adi,il,ilce,alan,lat,lon);
+                    String tarih=jsonObject.getString("tarih");
+                    String saat=jsonObject.getString("saat");
+                    Firma frm=new Firma(tc_no,firma_adi,il,ilce,alan,lat,lon,tarih,saat);
                     firmas.add(frm);
                 }
             } catch (IOException e) {

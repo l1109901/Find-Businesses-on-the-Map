@@ -70,13 +70,17 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                 }else if(ch2.isChecked()){
                     id2=2;count++;
                 }
-                else if ( count==0 || stc_no.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
+                if ( count==0 || stc_no.isEmpty() || stel.isEmpty() || ad.isEmpty() || soyad.isEmpty() || email.isEmpty() || kullanici_adi.isEmpty() || parola1.isEmpty() || parola2.isEmpty()) {
                     Toast.makeText(this, "Tüm alanları doldurmanız gereklidir !", Toast.LENGTH_LONG).show();
                 }else if (parola1.equals(parola2)) {
-                        long tc_no = Long.parseLong(stc_no);
-
-                        User user = new User(ad, soyad, tc_no, email,stel,id2,kullanici_adi,parola1);
-                        registerUser(user);
+                    long tc_no=0;
+                    try{
+                        tc_no = Long.parseLong(stc_no);
+                    }catch(Exception e){
+                        Toast.makeText(this, "Tcno 11 haneli sayi şeklinde olacak !", Toast.LENGTH_LONG).show();
+                    }
+                    User user = new User(ad, soyad, tc_no, email,stel,id2,kullanici_adi,parola1);
+                    registerUser(user);
                     }else {
                         final AlertDialog alertDialog = new AlertDialog.Builder(Register.this).create();
                         alertDialog.setMessage("Şifreler uyuşmuyor.Yeniden giriniz !");
@@ -108,6 +112,10 @@ public class Register extends ActionBarActivity implements View.OnClickListener 
                 }
                 int jsonResult = returnParsedJsonObject(result);
                 if(jsonResult == 0){
+                    Toast.makeText(Register.this, "Baska bir kullanıcı adi seciniz !", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(jsonResult == 2){
                     Toast.makeText(Register.this, "Invalid username or password or email", Toast.LENGTH_LONG).show();
                     return;
                 }
