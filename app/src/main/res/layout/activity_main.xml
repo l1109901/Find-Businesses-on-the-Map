@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:id="@+id/svScroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffffff">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:background="#ffffff">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/jobs"
+            android:layout_marginBottom="30dp"/>
+
+        <EditText
+            android:id="@+id/etKullanici_adi"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Kullanıcı Adı" />
+
+        <EditText
+            android:id="@+id/etParola1"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"
+            android:hint="Şifre" />
+
+        <Button
+            android:id="@+id/bLogin"
+            android:text="Giriş"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:background="#318CE7"/>
+
+        <Button
+            android:id="@+id/bSignup"
+            android:text="Kayıt Ol"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:background="#318CE7"/>
+    </LinearLayout>
+</ScrollView>

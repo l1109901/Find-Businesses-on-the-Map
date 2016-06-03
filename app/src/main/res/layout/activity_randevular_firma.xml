@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/svScroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_marginRight="10dp"
+                android:background="#318CE7"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Geri"
+                android:id="@+id/btnGeri"
+                android:onClick="geri"/>
+
+            <Button
+                android:layout_marginLeft="10dp"
+                android:background="#318CE7"
+                android:onClick="cikis"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Çıkış"
+                android:id="@+id/btnCikis" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_marginBottom="10dp"
+                android:background="#318CE7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gelen"
+                android:id="@+id/btnGelen"
+                android:onClick="gelen"/>
+
+            <Button
+                android:layout_marginBottom="10dp"
+                android:background="#318CE7"
+                android:onClick="onaylananlar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Onaylanan"
+                android:id="@+id/btnOnaylanan" />
+        </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.55">
+
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="10dp">
+                <ListView
+                    android:id="@+id/randevular"
+                    android:layout_width="match_parent"
+                    android:layout_height="262dp"
+                    android:background="@drawable/bg_key"
+                    android:choiceMode="singleChoice">
+                </ListView>
+                </ScrollView>
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_marginBottom="10dp"
+                android:background="#318CE7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Onayla"
+                android:id="@+id/btn_onayla"
+                android:onClick="onayla"/>
+
+            <Button
+                android:layout_marginBottom="10dp"
+                android:background="#318CE7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sil"
+                android:id="@+id/btn_delete"
+                android:onClick="delete"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

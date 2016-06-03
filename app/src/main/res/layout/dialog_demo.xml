@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:layout_height="wrap_content">
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="183dp" />
+
+    <TimePicker
+        android:id="@+id/time_picker"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/dialog_btn_ok"
+        android:text="Tamam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_gravity="right"/>
+
+    <Button
+        android:id="@+id/dialog_btn_iptal"
+        android:text="İptal"
+        android:layout_width="match_parent"
+        android:background="@android:color/holo_red_dark"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"/>
+
+</LinearLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Firma Bilgisi"
+        android:autoText="false"
+        android:gravity="center" />
+    <EditText
+        android:id="@+id/etFirmaAdi"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Firma Adı"
+        android:padding="10dp" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Il:"/>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_il"
+        android:prompt="@string/spinner_il"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="İlçe:"/>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_ilce"
+        android:prompt="@string/spinner_ilce"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Alan:"/>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_alan"
+        android:prompt="@string/spinner_bolum"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioGroup
+            android:id="@+id/radio_group_list_selector"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:background="#80000000">
+            <Button
+                android:onClick="iptal"
+                android:id="@+id/btn_iptal_message"
+                android:text="Iptal"
+                android:layout_width="166dp"
+                android:background="#318CE7"
+
+                android:layout_height="match_parent"
+                android:layout_gravity="left" />
+
+            <View
+                android:id="@+id/VerticalLine1"
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="#aaa" />
+
+            <Button
+                android:onClick="ekle"
+                android:id="@+id/btn_send_message"
+                android:text="Ekle"
+                android:background="#318CE7"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

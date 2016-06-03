@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    tools:context="ru.mail.loginregister.yolcizimden_oncekisayfa_calisan">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anasayfa"
+        android:id="@+id/btn_anasayfa"
+        android:layout_marginBottom="10dp"
+        android:background="#318CE7"
+        android:layout_gravity="center_horizontal"
+        android:onClick="anasayfa"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="#318CE7"
+        android:text="Yol Çiz"
+        android:id="@+id/btn_yolciz"
+        android:onClick="yol_ciz"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="#318CE7"
+        android:text="Onaylananlar İçin Yol Çiz"
+        android:id="@+id/btn_onaylanan_yol"
+        android:onClick="onaylanan_yol"/>
+</LinearLayout>

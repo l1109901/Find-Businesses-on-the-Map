@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".yol_cizimi_calisan"
+        tools:layout="@layout/activity_maps_firma"/>
+
+    <Button
+        android:id="@+id/btnDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignTop="@+id/map"
+        android:layout_marginLeft="62dp"
+        android:text="Yol" />
+
+    <Button
+        android:id="@+id/btnGeri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignTop="@+id/map"
+        android:layout_marginLeft="120dp"
+        android:text="Anasayfa"
+        android:onClick="anasayfa"/>
+
+</FrameLayout>
