@@ -1,5 +1,6 @@
 package ru.mail.loginregister;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,6 +8,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,10 +38,12 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import ru.mail.loginregister.calisan.main_page_for_isci;
 import ru.mail.loginregister.siniflar.Firma;
+import ru.mail.loginregister.siniflar.User;
 import ru.mail.loginregister.siniflar.UserLocalStore;
 
 /**
@@ -53,7 +57,7 @@ public class yol_cizimi_calisan extends FragmentActivity implements
         View.OnClickListener,
         GoogleMap.OnInfoWindowClickListener,
         GMapV2Direction.DirecitonReceivedListener, LocationListener,
-        GoogleMap.OnMarkerClickListener {
+        GoogleMap.OnMarkerClickListener{
 
     private Button btnDirection;
 
@@ -72,6 +76,14 @@ public class yol_cizimi_calisan extends FragmentActivity implements
     List<LatLng> points;
 
     private Marker myMarker;
+
+    private Date mDate;
+    private String time="";
+    private String date="";
+    private String firma_adi="";
+    private Double lat,lon;
+    private long tcno,tcno_firma;
+    private int year, month, day, hour, min;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -370,74 +382,133 @@ public class yol_cizimi_calisan extends FragmentActivity implements
     public boolean onMarkerClick(final Marker marker) {
 
         if (!marker.equals(myMarker)) {
-            String firma_adi = marker.getTitle().toString();
-            Double lat = marker.getPosition().latitude;//firma's latitude
-            Double lon = marker.getPosition().longitude;//firma's longtitude
-            //
-            //asagidaki yeni intent baslatmak yerine burada dialog icinde secdigim tarih
-            //ve saat almak istiyorum, bi degisken icine atarsan ben gerisini halederim
-            //datepicker ve timepicker icin dialog_demo.xml kullanabilirsin
+            firma_adi = marker.getTitle().toString();
+            lat = marker.getPosition().latitude;//firma's latitude
+            lon = marker.getPosition().longitude;//firma's longtitude
 
+            getAlanAndTCNOfromDB();//tcno_firma almak icin
 
+            //////////////////////////////////////////////////////////////////////////////////////
             final Dialog dialog = new Dialog(yol_cizimi_calisan.this);
             dialog.setContentView(R.layout.dialog_demo);
+            dialog.setTitle("Randevu Gönderme");
+
 
             DatePicker datePicker = (DatePicker) dialog.findViewById(R.id.date_picker);
             TimePicker timePicker = (TimePicker) dialog.findViewById(R.id.time_picker);
-            Button okBtn = (Button) dialog.findViewById(R.id.dialog_btn_ok);
-            Button iptalBtn = (Button) dialog.findViewById(R.id.dialog_btn_iptal);
-            iptalBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
+
+            Calendar calendar = Calendar.getInstance();
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+            hour = calendar.get(Calendar.HOUR_OF_DAY);
+            min = calendar.get(Calendar.MINUTE);
+
+            datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
+                public void onDateChanged(DatePicker view, int year, int month, int day) {
+                    yol_cizimi_calisan.this.year = year;
+                    yol_cizimi_calisan.this.month = month;
+                    yol_cizimi_calisan.this.day = day;
+                    updateDateTime();
                 }
             });
+
+            timePicker.setCurrentHour(hour);
+            timePicker.setCurrentMinute(min);
 
             timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-                @Override
-                public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-
+                public void onTimeChanged(TimePicker view, int hour, int min) {
+                    yol_cizimi_calisan.this.hour = hour;
+                    yol_cizimi_calisan.this.min = min;
+                    updateDateTime();
                 }
             });
 
-            Calendar today = Calendar.getInstance();
-
-            final int[] mounthT = {0};
-
-            datePicker.init(today.get(Calendar.YEAR),
-                    today.get(Calendar.MONTH),
-                    today.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
-                        @Override
-                        public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            mounthT[0] = monthOfYear;
-                        }
-                    });
-
-
-
-            okBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Verilerin alınıp yollanması işlemleri buarad olacak.
-
-                    Toast.makeText(yol_cizimi_calisan.this, "Ay:"+mounthT[0], Toast.LENGTH_LONG).show();
-                    dialog.dismiss();
-
-                }
-            });
-
+            Button btnGonder= (Button) dialog.findViewById(R.id.button2);
+            Button btnIptal=(Button)dialog.findViewById(R.id.button1);
 
             dialog.show();
 
-//            Intent i = new Intent(yol_cizimi_calisan.this, randevu_gonderme_islemleri_calisan.class);
-//            i.putExtra("firma_adi", firma_adi);
-//            i.putExtra("lat", lat);
-//            i.putExtra("lon", lon);
-//            startActivity(i);
+            btnGonder.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(yol_cizimi_calisan.this,"saat:"+hour,Toast.LENGTH_LONG).show();
+                    //to dismiss the Dialog
+
+                    sendMessage();
+                    dialog.dismiss();
+                }
+            });
+
+            btnIptal.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    //to dismiss the Dialog
+                    dialog.dismiss();
+                }
+            });
+
+            /*Intent i = new Intent(yol_cizimi_calisan.this, randevu_gonderme_islemleri_calisan.class);
+            i.putExtra("firma_adi", firma_adi);
+            i.putExtra("lat", lat);
+            i.putExtra("lon", lon);
+            startActivity(i);*/
         } else {
             Toast.makeText(this, "Bir İşyeri Seçiniz!.", Toast.LENGTH_LONG).show();
         }
         return false;
+    }
+
+    public void updateDateTime() {
+        mDate = new GregorianCalendar(year, month, day, hour, min).getTime();
+    }
+
+    public void sendMessage(){
+        createTime();//time stringe saat'i atiyor
+        createDate();//date stringe tarih'i atiyor
+        User user=userLocalStore.getLoggedInUser();
+        tcno=user.getTc_no();
+        //firma_adi degiskeninde tutuluyor
+        ServerRequests serverRequests=new ServerRequests(this);
+        serverRequests.storeRandevuDataInBackground(tcno,tcno_firma,firma_adi,date,time);
+        Toast.makeText(this, "Randevu Gonderilmiştir.", Toast.LENGTH_LONG).show();
+    }
+
+    public void createTime() {
+
+        String format = "";
+//        yol_cizimi_calisan.getToast();
+        if (hour == 0) {
+            hour += 12;
+            format = "AM";
+        }
+        else if (hour == 12) {
+            format = "PM";
+        } else if (hour > 12) {
+            hour -= 12;
+            format = "PM";
+        } else {
+            format = "AM";
+        }
+        time=hour+" : "+min+" "+format;
+    }
+
+    private void createDate() {
+        date=day+"/"+month+"/"+year;
+    }
+
+    public void getAlanAndTCNOfromDB(){
+
+        ServerRequests serverRequests=new ServerRequests(this);
+        serverRequests.fetchAlanInBackground(lat, lon, new GetAlanCallBack() {
+
+            @Override
+            public void done(Firma firma) {
+                tcno_firma=firma.getTcno();
+            }
+        });
     }
 
     @Override
@@ -448,9 +519,4 @@ public class yol_cizimi_calisan extends FragmentActivity implements
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
-//    public static int getToast(){
-//        return 12+12;
-////        Toast.makeText(yol_cizimi_calisan.this, "jsdgfsdf", Toast.LENGTH_SHORT).show();
-//    }
 }

@@ -2081,6 +2081,8 @@ containing a value of this type.
         public static final int btn_set_date=0x7f0d0085;
         public static final int btn_set_time=0x7f0d0087;
         public static final int btn_yolciz=0x7f0d009e;
+        public static final int button1=0x7f0d00a2;
+        public static final int button2=0x7f0d00a3;
         public static final int buttonPanel=0x7f0d0054;
         public static final int buttons=0x7f0d00b9;
         public static final int buyButton=0x7f0d0031;
@@ -2103,8 +2105,6 @@ containing a value of this type.
         public static final int default_activity_button=0x7f0d0047;
         public static final int default_control_frame=0x7f0d00b2;
         public static final int dialog=0x7f0d0023;
-        public static final int dialog_btn_iptal=0x7f0d00a3;
-        public static final int dialog_btn_ok=0x7f0d00a2;
         public static final int disableHome=0x7f0d000e;
         public static final int disconnect=0x7f0d00ba;
         public static final int donate_with=0x7f0d0038;
